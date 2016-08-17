@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>User : View</title>
+<!-- <link href="http://ironsummitmedia.github.io/startbootstrap-sb-admin-2/bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet" /> -->
+</head>
+<body data-navlink="List Users">
+	<div layout:fragment="content" class="container">
+		<div class="row"
+			sec:authorize="hasAnyRole('PERM_PLATFORM_UPDATE','PERM_ORG_UPDATE')">
+			<div class="col-sm-12">
+				<div class="page-header header-background">
+					<h1>
+						<span>User</span><small> <i
+							class="ace-icon fa fa-angle-double-right"></i> Edit
+						</small>
+						<div role="toolbar" class="pull-right hide">
+							<div class="btn-group">
+								<button type="button" class="btn btn-white btn-success"
+									id="home">
+									<i class="ace-icon fa fa-home bigger-120"></i>
+								</button>
+								<button type="button" class="btn btn-white btn-warning"
+									id="delete">
+									<i class="ace-icon fa fa-trash-o bigger-120"></i>Delete
+								</button>
+							</div>
+						</div>
+					</h1>
+				</div>
+				<div>
+					<form id="editForm" th:action="@{/users/edit}" action="#"
+						method="post" role="form" class="form-horizontal"
+						th:object="${user}" th:fragment="form">
+						<fieldset>
+							<input type="hidden" th:value="${user.id}" name="userId"
+								id="userId" />
+							<div class="form-group">
+								<label for="first-name" class="control-label col-md-2">First
+									Name</label>
+								<div class="col-md-3">
+									<input type="text" th:field="*{firstName}"
+										placeholder="First Name" class="form-control mandatory"
+										id="first-name" required="required" pattern="/^[\w'\s]+$/"
+										maxlength="50" />
+								</div>
+								<label for="last-name" class="control-label col-md-2">Last
+									Name</label>
+								<div class="col-md-3">
+									<input type="text" th:field="*{lastName}"
+										placeholder="Last Name" class="form-control mandatory"
+										id="last-name" required="required" pattern="/^[\w'\s]+$/"
+										maxlength="50" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="email" class="control-label col-md-2">E-Mail
+									Address</label>
+								<div class="col-md-3">
+									<input type="email" maxlength="225" th:field="*{primaryEmail}"
+										placeholder="E-mail" class="form-control mandatory" id="email"
+										required="required"
+										data-parsley-remote="/users/validatePrimaryEmail"
+										th:attr="data-parsley-remote-message=#{user.notunique.primaiyEmail}" />
+								</div>
+								<label for="email" class="control-label col-md-2">Registered
+									Mobile </label>
+								<div class="col-md-3">
+									<input type="tel" maxlength="15" th:field="*{registeredMobile}"
+										placeholder="Mobile No." class="form-control" data-parsley-pattern="^((\d{10})|^[+](\d{12}))$"
+										data-parsley-error-message="Enter valid mobile number " id="registeredMobile" />
+								</div>
+							</div>
+							<div class="form-group"
+								sec:authorize="hasRole('PERM_PLATFORM_UPDATE')">
+								<label for="role" class="control-label col-md-2">Role</label>
+								<div class="col-md-3">
+									<select class="form-control mandatory" id="roles1" name="roles[0].code" required="required" >
+										<option value=""></option>
+										<th:block
+											th:each="role : ${T(scanon.domain.RoleType).values()}">
+											<option th:selected="${user.hasRole(role)}"
+												th:value="${role}" th:text="${role}">Role</option>
+										</th:block>
+									</select>
+								</div>
+								<label for="userType" class="control-label col-md-2">User
+									Type</label>
+								<div class="col-md-3">
+									<select class="form-control" id="userType"
+										th:field="*{userType}">
+										<th:block
+											th:each="type : ${T(scanon.domain.enums.UserType).values()}">
+											<option th:selected="${user.getUserType()== type}"
+												th:value="${type}" th:text="#{'userType.'+${type}}">userType</option>
+										</th:block>
+									</select>
+								</div>
+							</div>
+							<div class="form-group"
+								sec:authorize="hasRole('PERM_PLATFORM_UPDATE')">
+								<label for="organization" class="control-label col-md-2">Organization</label>
+								<div class="col-md-8">
+									<select class="form-control mandatory" id="organization"
+										th:field="*{organization}" required="required">
+										<option value=""></option>
+										<th:block th:each="organization:${organizations}">
+											<option th:selected="${user.organization == organization}"
+												th:value="${organization.id}" th:text="${organization.name}">Organization</option>
+										</th:block>
+									</select>
+								</div>
+							</div>
+							<div class="form-group"
+								sec:authorize="hasRole('PERM_PLATFORM_UPDATE')">
+								<label for="authorizedActionSetIds"
+									class="control-label col-md-2">Auth. Applites</label>
+								<div class="col-md-8">
+									<input type="text" maxlength="100"
+										th:field="*{authorizedActionSetIds}"
+										placeholder=" Authorized Applite IDs" class="form-control"
+										id="authorizedActionSetIds" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2"></label>
+								<div class="col-md-8">
+									<input type="submit" class="btn btn-sm btn-success"
+										value="Save" /> <a type="button"
+										class="btn btn-sm btn-danger"
+										th:href="@{/users/list}">Cancel</a>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script layout:fragment="script" type="text/javascript">
+		$(document).ready(function() {
+			$('#editForm').parsley();
+		});
+	</script>
+</body>
+</html>

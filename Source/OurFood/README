@@ -1,0 +1,31 @@
+PREREQ
+======
+Git
+
+Maven
+
+JDK
+
+IDE
+===
+Eclipse
+
+EGit
+
+Setup
+=====
+$ git clone _repo_
+
+$ cd _dir_
+
+$ mvn eclipse:eclipse
+
+Add the resultant project to Eclipse
+
+$ mvn clean package
+
+TODO
+====
+Is soft delete a good idea ? Cascadng will not work. Redundancy of data. Extra DB calls for unique constraints.
+
+Sets do not have ordering. use lists ?

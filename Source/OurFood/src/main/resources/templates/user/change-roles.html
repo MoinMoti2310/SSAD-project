@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout">
+<head>
+<title>Users</title>
+</head>
+<body data-navlink="List Users">
+	<div layout:fragment="content" class="container-fluid">
+		<h1 class="page-header">
+			Users <small>Users in this Org</small>
+		</h1>
+		<div class="row">
+			<!-- begin col-12 -->
+			<div class="col-md-12 ui-sortable">
+				<!-- begin panel -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">User Details</h4>
+					</div>
+					<div class="panel-body">
+						<form action="/users/view-user" method="post">
+							<input type="hidden" name="userId" th:value="${user.id}"/>
+							<div class="form-group">
+								<label class="control-label col-md-3">First Name</label>
+								<div class="col-md-9">
+									<p th:text="${user.firstName}" class="form-control-static">First Name</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Last Name</label>
+								<div class="col-md-9">
+									<p th:text="${user.lastName}" class="form-control-static">Last Name</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Primary Email</label>
+								<div class="col-md-9">
+									<p th:text="${user.primaryEmail}" class="form-control-static">Primary Email</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<p class="control-label col-md-3">Roles</p>
+								<div class="checkbox col-md-9">
+									<label> <input type="checkbox" value="ROLE_ORG_PRI_ADMIN" th:checked="${user.hasRole('ROLE_ORG_PRI_ADMIN')}" name="roles" /> Organization Admin
+									</label> <label> <input type="checkbox" value="ROLE_ORG_SEC_ADMIN" th:checked="${user.hasRole('ROLE_ORG_SEC_ADMIN')}" name="roles" /> Secondary Admin
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-9 ui-sortable col-md-offset-3">
+									<input type="submit" class="btn btn-sm btn-inverse" value="Chage Roles" />
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- end panel -->
+			</div>
+			<!-- end col-12 -->
+		</div>
+	</div>
+	<script type="text/javascript" layout:fragment="script">
+		
+	</script>
+</body>
+</html>

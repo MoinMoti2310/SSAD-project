@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout-un-authorized">
+<head>
+<title>Unauthorized</title>
+</head>
+<body>
+	<div class="container" layout:fragment="content">
+		<div class="row" id="alert-container">
+			<div class="alert alert-danger alert-dismissable">
+				<button type="button" class="close"
+					aria-hidden="true">&times;</button>
+				<span><strong>Unauthorized:</strong> Please contact Applite Platform support team at <a href="mailto:support@qnovon.com">support@qnovon.com</a>.</span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

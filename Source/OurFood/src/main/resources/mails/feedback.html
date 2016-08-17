@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:remove="all">Template for HTML email with inline image</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <p>
+      Feedback has been submitted on ScanOn site titled <b th:text="${title}"></b> 
+    </p>
+    <p th:text="${feedback}">
+      Feedback message
+    </p>
+    <p th:text="${email}">
+      Email
+    </p>
+  </body>
+</html>

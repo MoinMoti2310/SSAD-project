@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Organization: Edit</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container-fluid">
+		<div class="page-header header-background">
+			<h1>
+				<span>Organization Details</span><small> <i
+					class="ace-icon fa fa-angle-double-right"></i> Edit
+				</small>
+			</h1>
+		</div>
+		<div class="row vertical-align">
+			<div class="col-lg-10 col-lg-offset-1">
+				<form th:action="@{/organization/edit}" method="post" role="form" id="editOrganization"
+					class="form-horizontal">
+
+					<fieldset>
+						<div class="form-group">
+							<input type="hidden" name="orgId" id="orgId" th:value="${org.id}" />
+							<label for="org-name" class="control-label col-md-2">Organization
+								Name</label>
+							<div class="col-md-4">
+								<input type="text" th:value="${org.name}" th:field="${org.name}"
+									class="form-control mandatory" id="org-name" required="required" placeholder="Enter Name" maxlength="50"/>
+							</div>
+							<label for="org-type" class="control-label col-md-2">Organization
+								Type</label>
+							<div class="col-md-4">
+								<input type="text" name="type" th:value="${org.type}"
+									th:field="${org.type}" class="form-control mandatory" id="org-type"
+									required="required" placeholder="Enter Type" maxlength="50"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="org-size" class=" control-label col-md-2 ">Organization
+								Size</label>
+							<div class="col-md-2">
+								<input type="number" name="size" th:value="${org.size}"
+									th:field="${org.size}" class="form-control mandatory" id="org-size"
+									required="required" placeholder="Enter Size" maxlength="10"/>
+							</div>
+							<label for="org-type"
+								class="control-label col-md-2 col-md-offset-2">Organization
+								URL</label>
+							<div class="col-md-4">
+								<input type="url" name="url" th:value="${org.url}"
+									th:field="${org.url}" class="form-control" id="org-type" placeholder="Enter URL" maxlength="225"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="org-description" class="control-label col-md-2">
+								Description</label>
+							<div class="col-md-10">
+								<input type="hidden" th:value="${org.description}" id="desc"
+									name="desc" class="form-control" />
+								<textarea name="description" class="form-control"
+									id="org-description" placeholder="Enter Description" maxlength="225"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12 col-md-offset-2">
+								<input type="submit" class="btn btn-sm btn-success" value="Save" />
+								<a type="button" class="btn btn-sm btn-danger"
+									th:href="@{/organization/list}">Cancel</a>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" layout:fragment="script">
+		$(document).ready(function() {
+			//to set value in text area
+			var t = $("#desc").prop("defaultValue");
+			$("#org-description").val(t);
+			$("#editOrganization").parsley();
+		});
+	</script>
+</body>
+</html>

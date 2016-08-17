@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>User : Invite</title>
+<!-- <link href="http://ironsummitmedia.github.io/startbootstrap-sb-admin-2/bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet" /> -->
+</head>
+<body data-navlink="Add User">
+	<div layout:fragment="content" class="container">
+		<div class="row vertical-align"
+			sec:authorize="hasAnyRole('PERM_PLATFORM_UPDATE')">
+			<div class="col-sm-12">
+				<div class="page-header header-background">
+					<h1>
+						<span>Invite New-User</span>
+					</h1>
+				</div>
+				<div class="panel-body">
+					<form id="inviteForm" th:action="@{/users/invite}" action="#"
+						method="post" role="form" class="form-horizontal"
+						th:object="${register}">
+						<div class="row" th:if="${#fields.hasErrors('*')}">
+							<div class="col-md-12">
+								<div class="note note-danger">
+									<h4>Validation errors</h4>
+									<p th:each="error : ${#fields.errors('*')}" th:text="${error}">Validation
+										errors</p>
+								</div>
+							</div>
+						</div>
+						<fieldset>
+							<div class="form-group">
+								<label for="first-name" class="control-label col-md-2">First
+									Name</label>
+								<div class="col-md-3">
+									<input type="text" th:field="*{firstName}"
+										placeholder=" First Name" class="form-control mandatory"
+										id="first-name" required="required" pattern="/^[\w'\s]+$/"
+										maxlength="50" />
+								</div>
+								<label for="last-name" class="control-label col-md-2">Last
+									Name</label>
+								<div class="col-md-3">
+									<input type="text" th:field="*{lastName}"
+										placeholder=" Last Name" class="form-control mandatory"
+										id="last-name" required="required" pattern="/^[\w'\s]+$/"
+										maxlength="50" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="email" class="control-label col-md-2">E-Mail
+									Address</label>
+								<div class="col-md-8">
+									<input type="email" maxlength="225" th:field="*{primaryEmail}"
+										placeholder=" E-mail" class="form-control mandatory" id="email"
+										required="required"
+										data-parsley-remote="/users/validatePrimaryEmail"
+										th:attr="data-parsley-remote-message=#{user.notunique.primaiyEmail}" />
+								</div>
+							</div>
+							<div class="form-group"
+								sec:authorize="hasRole('PERM_PLATFORM_UPDATE')">
+								<label for="organization" class="control-label col-md-2">Organization</label>
+								<div class="col-md-8">
+									<select class="form-control mandatory" id="organization" required="required"
+										th:field="*{org}">
+										<option value="" hidden="">Select an Organization</option>
+										<option th:each="organization:${organizations}"
+											th:value="${organization.id}" th:text="${organization.name}">Organization</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group"
+								sec:authorize="hasRole('PERM_PLATFORM_UPDATE')">
+								<label for="role" class="control-label col-md-2">Role</label>
+								<div class="col-md-8">
+									<select class="form-control mandatory" id="role" th:field="*{role}" required="required">
+										<option value="" hidden="">Select a Role</option>
+										<th:block
+											th:each="role : ${T(scanon.domain.RoleType).values()}">
+											<option th:value="${role}" th:text="${role}">Role</option>
+										</th:block>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2"></label>
+								<div class="col-md-8">
+									<input type="submit" class="btn btn-sm btn-success"
+										id="btn-submit" value="Invite" />&nbsp;<a type="button"
+										class="btn btn-sm btn-danger" id="btn-group-cancel"
+										th:href="@{/users/list}">Cancel</a>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script layout:fragment="script" type="text/javascript">
+	
+		function formSubmitListener() {
+
+			$("#inviteForm").on("submit", function() {
+				if ($('#inviteForm').parsley().isValid()) {
+					$("#btn-submit").prop('disabled', true);
+				}
+			});
+		}
+		$(document).ready(function() {
+			$('#inviteForm').parsley();
+			formSubmitListener()
+		});
+	</script>
+</body>
+</html>

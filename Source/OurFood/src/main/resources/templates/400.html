@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout-blank">
+<head>
+<title>Error</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div class="container" layout:fragment="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+
+                <div class="error-container">
+                    <div class="well">
+                        <h1 class="grey lighter smaller">
+                            <span class="blue bigger-125"> <i class="ace-icon fa fa-random"></i> 400
+                            </span> The server is unable to process your request
+                        </h1>
+
+                        <hr />
+                        <h3 class="lighter smaller">
+                            Retry your action
+                            <i class="ace-icon fa fa-gear fa-spin bigger-125"></i>
+                        </h3>
+
+                        <div class="space"></div>
+
+                        <div>
+                            <h4 class="lighter smaller">If this is a mistake</h4>
+                            <ul class="list-unstyled spaced inline bigger-110 margin-15">
+                                <li><i class="ace-icon fa fa-hand-o-right blue"></i> Give us more info on how this specific error occurred!</li>
+                            </ul>
+                        </div>
+                        <hr />
+                        <div class="space"></div>
+
+                        <div class="center">
+                            <a href="javascript:history.back()" class="btn btn-grey">
+                                <i class="ace-icon fa fa-arrow-left"></i>
+                                Go Back
+                            </a>
+
+                            <a th:href="@{/}" href="#" class="btn btn-primary">
+                                <i class="ace-icon fa fa-tachometer"></i>
+                                Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE CONTENT ENDS -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+</body>
+</html>

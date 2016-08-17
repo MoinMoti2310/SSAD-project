@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="static">
+<head>
+<title>ScanOn - Feedback</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div class="container" layout:fragment="content">
+		<form id="form1" method="post" action="/uploadfile"
+			enctype="multipart/form-data">
+
+			<!-- File input -->
+			<input name="uploadfile" id="uploadfile" type="file" /><br /> <input
+				type="submit" value="Upload" />
+		</form>
+		<br /> <br />
+		<div>Another form</div>
+		<form id="form2" method="post" action="/uploadfile"
+			enctype="multipart/form-data">
+
+			<!-- File input -->
+			<input name="uploadfile1" id="uploadfile1" type="file" /><br /> <input
+				type="submit" value="Upload" />
+		</form>
+		<script type="text/javascript" layout:fragment="script">
+			// bind the on-change event
+			$(document).ready(function() {
+				$("#uploadfile").on("change", uploadFile);
+			});
+
+			/**
+			 * Upload the file sending it via Ajax at the Spring Boot server.
+			 */
+			function uploadFile() {
+
+				var fd = new FormData();
+				fd.append("uploadfile", uploadfile.files[0]);
+
+				$.ajax({
+					url : "/uploadfile",
+					type : "POST",
+					data : fd,
+					/* enctype : 'multipart/form-data', */
+					processData : false,
+					contentType : false,
+					cache : false,
+					success : function() {
+						// Handle upload success
+						// ...
+						alert('SUCCESS');
+					},
+					error : function() {
+						// Handle upload error
+						// ...
+						alert('ERROR');
+					}
+				});
+			}
+		</script>
+	</div>
+</body>
+</html>

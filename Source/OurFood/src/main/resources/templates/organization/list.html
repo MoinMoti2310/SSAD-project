@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Organizations</title>
+</head>
+<body data-navlink="List Orgs">
+	<ul layout:fragment="breadcrumb">
+		<li><i class="ace-icon fa fa-home home-icon"></i> <a href="#">Home</a></li>
+		<li class="active">Organizations</li>
+	</ul>
+	<div layout:fragment="content" class="container-fluid">
+		<div class="page-header header-background">
+			<h1>
+				Organizations <small><i
+					class="ace-icon fa fa-angle-double-right"></i> Created</small>
+			</h1>
+		</div>
+		<div class="row">
+			<!-- begin col-12 -->
+			<div class="col-md-12">
+				<!-- begin panel -->
+				<div role="toolbar" id="as-actions">
+					<div class="btn-group">
+						<a type="button" class="btn btn-white btn-primary"
+							th:href="@{/organization/create}">New</a>
+					</div>
+				</div>
+				<div class="widget-box widget-color-blue2">
+					<div class="widget-header">
+						<h5 class="widget-title bigger lighter">Organizations</h5>
+						<a class="btn btn-sm btn-white btn-primary"
+							th:href="@{/organization/create}"> <i
+							class="ace-icon fa fa-plus"></i>
+						</a>
+					</div>
+					<div class="widget-body">
+						<div class="widget-main no-padding">
+							<table
+								class="table table-bordered table-hover no-margin-bottom no-border-top"
+								id="organization-list">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<th:block th:each="organization : ${organizations}">
+										<tr th:attr="data-organization-id=${organization.id}">
+										<td><a th:href="@{edit/{id}(id=${organization.id})}" th:text="${organization.name}" title="Organization Details" class="btn btn-link">Name</a></td>
+											<td class="btn-group"><a href="javascript:;"
+												data-action="enable" class="btn btn-primary btn-white"
+												th:disabled="${organization.isActive}">Enable</a> <a
+												href="javascript:;" data-action="disable"
+												class="btn btn-primary btn-white"
+												th:disabled="!${organization.isActive}">Disable</a> <a
+												th:href="@{/users/list-org/{id}(id=${organization.id})}"
+												class="btn btn-link">List Users</a></td>
+										</tr>
+									</th:block>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="widget-toolbox clearfix">
+						<ul class="pagination pull-right no-margin">
+							<li><a href="#" class="disabled">&lt;</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#" class="disabled">&gt;</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- end col-12 -->
+		</div>
+	</div>
+	<script type="text/javascript" layout:fragment="script">
+		$(document).ready(
+				function() {
+					$("a[data-action=enable]").click(
+							function() {
+								$.post("activate", {
+									organizationId : $(this).parents("tr")
+											.data("organizationId")
+								});
+							});
+					$("a[data-action=disable]").click(
+							function() {
+								$.post("deactivate", {
+									organizationId : $(this).parents("tr")
+											.data("organizationId")
+								});
+							});
+				});
+	</script>
+</body>
+</html>

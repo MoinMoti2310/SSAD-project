@@ -1,0 +1,113 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	margin-bottom: 60px;
+}
+
+.footer {
+	background-color: #f5f5f5;
+	bottom: 0;
+	height: 60px;
+	position: absolute;
+	width: 100%;
+}
+
+body>.container {
+	padding: 60px 15px 0;
+}
+
+.container .text-muted {
+	margin: 20px 0;
+}
+
+.footer>.container {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+@media ( min-width : 768px) {
+	.vertical-align {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.note {
+	margin-bottom: 20px;
+	padding: 15px;
+	border-left: 3px solid;
+}
+
+.note.note-success {
+	border-color: #4a8564;
+	background: #b0ebca;
+	color: #3c763d;
+}
+
+.note.note-success h1, .note.note-success h2, .note.note-success h3,
+	.note.note-success h4, .note.note-success h5, .note.note-success h6 {
+	color: #3c763d;
+}
+
+.note.note-danger {
+	border-color: #986e6e;
+	background: #fbd1d1;
+	color: #a94442;
+}
+
+.note.note-danger h1, .note.note-danger h2, .note.note-danger h3, .note.note-danger h4,
+	.note.note-danger h5, .note.note-danger h6 {
+	color: #a94442;
+}
+
+.note.note-info {
+	border-color: #587c89;
+	background: #bee2ef;
+	color: #31708f;
+}
+
+.note.note-info h1, .note.note-info h2, .note.note-info h3, .note.note-info h4,
+	.note.note-info h5, .note.note-info h6 {
+	color: #31708f;
+}
+
+.note.note-warning {
+	border-color: #9d9080;
+	background: #fff2e3;
+	color: #8a6d3b;
+}
+
+.note.note-warning h1, .note.note-warning h2, .note.note-warning h3,
+	.note.note-warning h4, .note.note-warning h5, .note.note-warning h6 {
+	color: #8a6d3b;
+}
+
+.parsley-errors-list {
+    padding: 0 !important;
+    list-style-type: none !important;
+    margin: 0 !important;
+    color: #e5603b;
+    font-size: 12px !important;
+    line-height: inherit !important;
+}
+.parsley-errors-list.filled {
+    margin-top: 5px !important;
+}
+.parsley-error,
+.parsley-success {
+    color: #333 !important;
+}
+.parsley-error {
+    background: #ffdedd !important;
+    border-color: #ff5b57 !important;
+}
+
+.parsley-error:focus,
+.parsley-success:focus {
+    color: #333 !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}

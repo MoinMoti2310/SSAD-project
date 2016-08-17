@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:static="http://thymeleafexampes"
+	xmlns:sec="http://springsecurity">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<meta name="description" content="ScanOn Admin" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>ScanOn</title>
+<link rel="stylesheet" static:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" static:href="@{/css/font-awesome.css}" />
+<link rel="stylesheet" static:href="@{/css/ace.css}" />
+<link rel="stylesheet" static:href="@{/css/scanon-ext.css}" />
+<!-- <link rel="stylesheet" static:href="@{/css/fonts.googleapis.com.css}" /> -->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+<!--[if lte IE 9]>
+        <link rel="stylesheet" static:href="@{/css/ace-part2.min.css" />
+        <link rel="stylesheet" static:href="@{/css/ace-ie.min.css" />
+        <![endif]-->
+<!--[if lte IE 8]>
+        <script static:src="@{/js/html5shiv.min.js}"></script>
+        <script static:src="@{/js/respond.min.js}"></script>
+        <![endif]-->
+</head>
+<body class="no-skin">
+	<div class="main-container" id="main-container">
+		<div class="main-content">
+			<div class="main-content-inner">
+				<div class="page-content" layout:fragment="content"></div>
+			</div>
+		</div>
+		<a href="#" id="btn-scroll-up"
+			class="btn-scroll-up btn btn-sm btn-inverse"> <i
+			class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+		</a>
+	</div>
+
+	<script static:src="@{/js/jquery.js}"></script>
+	<script static:src="@{/js/bootstrap.js}"></script>
+	<!-- ace scripts -->
+	<script static:src="@{/js/ace-elements.js}"></script>
+	<script static:src="@{/js/ace.js}"></script>
+	<th:block layout:fragment="scripts"></th:block>
+	<script type="text/javascript" layout:fragment="script"></script>
+	<script type="text/javascript"
+		th:if="${@environment.getActiveProfiles()[0] == 'prod-amazon'}">
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script',
+				'//www.google-analytics.com/analytics.js', 'ga');
+		ga('create', 'UA-62680805-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+</body>
+</html>

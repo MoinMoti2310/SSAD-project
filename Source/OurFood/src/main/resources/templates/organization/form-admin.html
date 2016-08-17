@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Organizion : Create</title>
+</head>
+<body data-navlink="Create Org">
+	<div layout:fragment="content" class="container-fluid">
+		<div class="row vertical-align">
+			<div class="col-md-8 col-md-offset-2">
+				<form id="registerForm" th:action="@{/organization/create-admin}"
+					action="#" method="post" role="form" class="form-horizontal"
+					th:object="${register}">
+					<div class="row" th:if="${#fields.hasErrors('*')}">
+						<div class="col-md-12">
+							<div class="note note-danger">
+								<h4>Validation errors</h4>
+								<p th:each="error : ${#fields.errors('*')}" th:text="${error}">Validation
+									errors</p>
+							</div>
+						</div>
+					</div>
+					<fieldset>
+						<legend>Organization Details</legend>
+						<div class="form-group">
+							<label for="org-name" class="sr-only control-label">Organization
+								Name</label>
+							<div class="col-md-6">
+								<input type="text" th:field="${organization.name}"
+									placeholder="Organization Name" class="form-control mandatory"
+									id="org-name" required="required" maxlength="50"/>
+							</div>
+							<label for="org-type" class="sr-only control-label">Organization
+								Type</label>
+							<div class="col-md-6">
+								<input type="text" name="type" placeholder="Organization Type"
+									class="form-control mandatory" id="org-type" required="required" maxlength="50" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="org-size" class="sr-only control-label">Organization
+								Size</label>
+							<div class="col-md-6">
+								<input type="text" name="size" placeholder="Organization Size"
+									class="form-control mandatory" id="org-size" required="required" />
+							</div>
+							<label for="org-type" class="sr-only control-label">Organization
+								URL</label>
+							<div class="col-md-6">
+								<input type="url" name="url" placeholder="Organization URL"
+									class="form-control" id="org-type" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="org-description" class="sr-only control-label">Organization
+								Description</label>
+							<div class="col-md-12">
+								<textarea name="description"
+									placeholder="Organization Description"
+									class="form-control" id="org-description"></textarea>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Admin Details</legend>
+						<div class="form-group">
+							<label for="first-name" class="sr-only control-label">First
+								Name</label>
+							<div class="col-md-6">
+								<input type="text" th:field="*{firstName}"
+									placeholder="First Name" class="form-control mandatory"
+									id="first-name" required="required" />
+							</div>
+							<label for="last-name" class="sr-only control-label">Last
+								Name</label>
+							<div class="col-md-6">
+								<input type="text" th:field="*{lastName}"
+									placeholder="Last Name" class="form-control mandatory"
+									id="last-name" required="required" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="sr-only control-label">E-Mail
+								Address</label>
+							<div class="col-md-12">
+								<input type="email" th:field="*{primaryEmail}"
+									placeholder="E-mail" class="form-control mandatory" id="email"
+									required="required"
+									data-parsley-remote="/users/validatePrimaryEmail"
+									th:attr="data-parsley-remote-message=#{user.notunique.primaiyEmail}" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-12">
+								<input type="submit" class="btn btn-sm btn-success "
+									value="Register" />&nbsp;<a type="button" class="btn btn-sm btn-danger" id="btn-group-cancel" th:href="@{/organization/list}">Cancel</a>
+									
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script layout:fragment="script" type="text/javascript">
+		$(document).ready(function() {
+			$('#registerForm').parsley();
+			addCancelListener();
+		));
+	</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout-un-authorized">
+<head>
+<title>User | Change password</title>
+</head>
+<body>
+	<div layout:fragment="content" class="content bg-silver-lighter">
+		<div data-animation-type="fadeInDown" data-animation="true"
+			class="container fadeInDown contentAnimated">
+			<div class="page-header header-background">
+				<h1>User | Change Password</h1>
+			</div>
+			<!-- begin row -->
+			<div class="row">
+				<!-- begin col-6 -->
+				<div class="col-lg-10 col-lg-offset-1">
+					<form id="frm-change-pwd" th:action="@{/users/change-pwd}"
+						action="#" method="post" role="form" class="form-horizontal"
+						data-parsley-validate="">
+						<div class="form-group">
+							<label for="currentPassword" class="control-label col-md-2">Current
+								Password</label>
+							<div class="col-md-6">
+								<input type="password" name="currentPassword"
+									required="required" id="currentPassword" placeholder="Enter current password"
+									data-parsley-error-message="Enter a valid password."
+									class="form-control mandatory" maxlength="15"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="control-label col-md-2">New
+								Password</label>
+							<div class="col-md-6">
+								<input type="password" name="password" id="password"
+									data-parsley-pattern="^(?=\S+$).{6,15}$" placeholder="Enter a new password"
+									data-parsley-error-message="Enter a new password between 6 to 15 characters without spaces."
+									required="required" class="form-control mandatory" maxlength="15"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="confirmPass" class="control-label col-md-2">Confirm
+								Password</label>
+							<div class="col-md-6">
+								<input type="password" name="confirmPass" id="confirmPass"
+									required="required" data-parsley-equalto="#password" placeholder="Confirm new password"
+									data-parsley-error-message="The value should be same as new password."
+									class="form-control mandatory" maxlength="15"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-10 col-md-offset-2">
+								<input type="submit" class="btn btn-sm btn-success"
+									value="Change" />&nbsp;<a type="button" class="btn btn-sm btn-danger" id="btn-group-cancel" 
+																th:href="@{/}">Cancel</a>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- end col-12 -->
+			</div>
+			<!-- end row -->
+		</div>
+	</div>
+	<script type="text/javascript">
+	
+		$(document).ready(function() {
+			$("#frm-change-pwd").parsley();
+		});
+	</script>
+</body>
+</html>

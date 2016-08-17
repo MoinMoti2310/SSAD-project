@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:static="http://thymeleafexampes"
+	xmlns:sec="http://springsecurity">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<meta name="description" content="Quick App Store" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>ScanOn</title>
+<link rel="stylesheet" static:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" static:href="@{/css/font-awesome.css}" />
+<link rel="stylesheet" static:href="@{/css/ace.css}" />
+<link rel="stylesheet" static:href="@{/css/scanon-landing.css}" />
+<link rel="stylesheet"
+	static:href="@{/css/owl-carousel/owl.carousel.css}" />
+<!-- <link rel="stylesheet" static:href="@{/css/fonts.googleapis.com.css}" /> -->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans'
+	rel='stylesheet' type='text/css' />
+<!--[if lte IE 9]>
+        <link rel="stylesheet" static:href="@{/css/ace-part2.min.css" />
+        <link rel="stylesheet" static:href="@{/css/ace-ie.min.css" />
+        <![endif]-->
+<!--[if lte IE 8]>
+        <script static:src="@{/js/html5shiv.min.js}"></script>
+        <script static:src="@{/js/respond.min.js}"></script>
+        <![endif]-->
+</head>
+<body class="no-skin">
+	<nav id="navbar"
+		class="navbar navbar-default navbar-fixed-top navbar-collapse"
+		>
+		<div id="navbar-container" class="navbar-container container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<h2 style="padding: 10px; color:white">Quick App Store</h2>
+			</div>
+			<div id="scanon-landing-page-navbar-collapse"
+				class="collapse navbar-collapse">
+				<!-- <ul class="nav navbar-nav pull-right">
+					<li><a href="/">HOME</a></li>
+					<li><a href="/#features">FEATURES</a></li>
+					<li><a href="/#price">PRICE</a></li>
+					<li><a href="/#getstarted">GET STARTED</a></li>
+					<li><a href="/#contact">CONTACT</a></li>
+					<li><a href="/feedback">FEEDBACK</a></li>
+					<li class="active"><a href="/users/login">SIGN IN</a></li>
+					<li class="active"><a href="/users/register">SIGN UP</a></li>
+					<li><a href="/about">About</a></li>
+				</ul> -->
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<div layout:fragment="content"></div>
+
+
+	<script static:src="@{/js/jquery.js}"></script>
+	<script static:src="@{/js/bootstrap.js}"></script>
+	<!-- ace scripts -->
+	<script static:src="@{/js/ace-elements.js}"></script>
+	<script static:src="@{/js/ace.js}"></script>
+	<script static:src="@{/js/owl-carousel/owl.carousel.min.js}"></script>
+	<th:block layout:fragment="scripts"></th:block>
+	<script type="text/javascript" layout:fragment="script"></script>
+	<script type="text/javascript"
+		th:if="${@environment.getActiveProfiles()[0] == 'prod-amazon'}">
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script',
+				'//www.google-analytics.com/analytics.js', 'ga');
+		ga('create', 'UA-62680805-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/* Owl carousel */
+			//alert('hi1')
+			$(".owl-carousel").owlCarousel({
+				slideSpeed : 500,
+				rewindSpeed : 1000,
+				mouseDrag : true,
+				stopOnHover : true
+			});
+			//alert('hi2')
+			/* Own navigation */
+			$(".owl-nav-prev").click(function() {
+
+				//alert('hi2')
+				$(this).parent().next(".owl-carousel").trigger('owl.prev');
+			});
+			//alert('hi3')
+			$(".owl-nav-next").click(function() {
+				//alert('hi2')
+
+				$(this).parent().next(".owl-carousel").trigger('owl.next');
+			});
+			//alert('hi4')
+		});
+	</script>
+</body>
+</html>

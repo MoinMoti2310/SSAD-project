@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:remove="all">Applite Platform - User Registration</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p th:text="#{welcome.message(${name})}">Hello, Applite User!</p>
+	<p>
+		You have been successfully registered on the <b>Applite Platform</b> on <span
+			th:text="${#dates.format(registrationDate)}">01-01-2015</span>
+	</p>
+	<div th:switch="${platformUrl}">
+		<p th:case='sandboxadmin.applite.in'>
+			To activate your account visit <a
+				th:href="@{http://sandboxadmin.applite.in/users/validate(token=${resetToken.token}, login=${login})}">here</a>
+		</p>
+		<p th:case='admin.applite.in'>
+			To activate your account visit <a
+				th:href="@{http://admin.applite.in/users/validate(token=${resetToken.token}, login=${login})}">here</a>
+		</p>
+		<p th:case='*'>
+			To activate your account visit <a
+				th:href="@{http://admin.applite.in/users/validate(token=${resetToken.token}, login=${login})}">here</a>
+		</p>
+	</div>
+	<p>
+		This link is valid only till <b
+			th:text="${#dates.format(resetToken.validTru)}">Today</b>
+	</p>
+	<p>
+		Regards, <br /> <em>Applite Platform Team</em>
+	</p>
+</body>
+</html>

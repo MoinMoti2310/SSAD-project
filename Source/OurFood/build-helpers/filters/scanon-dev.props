@@ -1,0 +1,14 @@
+scanon.ds.url=jdbc:mysql://scanontest.ccb5gz6dnpgr.ap-southeast-1.rds.amazonaws.com/scanontest
+scanon.ds.username=scanontest
+scanon.ds.password=zillions
+scanon.fb.id=141921375881
+scanon.fb.key=a15172507b7a24f04b9152a4c2d9617b
+scanon.google.id=421635373947-kg3i6486cb569l98deh0uguti36oud6l.apps.googleusercontent.com
+scanon.google.key=WglHmFhfAUVJ9w5dbaIdFc4P
+scanon.smtp.host=email-smtp.us-east-1.amazonaws.com
+scanon.smtp.port=587
+scanon.smtp.user=AKIAJ76OO2IGTRZD3KLQ
+scanon.smtp.password=AsidQgxcyfXRMo+y0iqii3iEs9af4rBsooeV1M0h96LK
+scanon.embedded.url=
+scanon.smtp.starttls.enable=true
+scanon.static.url=

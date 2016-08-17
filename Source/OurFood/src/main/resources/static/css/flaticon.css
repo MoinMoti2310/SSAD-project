@@ -1,0 +1,122 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("../fonts/flaticon.eot");
+	src: url("../fonts/flaticon.eot#iefix") format("embedded-opentype"),
+		url("../fonts/flaticon.woff") format("woff"),
+		url("../fonts/flaticon.ttf") format("truetype"),
+		url("../fonts/flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after,
+	[class*=" flaticon-"]:after {
+	font-family: Flaticon;
+	font-size: 25px;
+	font-style: normal;
+	margin-left: 5px;	
+	padding: 5px;
+}
+
+.flaticon-bell46:before {
+	content: "\e000";
+}
+
+.flaticon-calendar146:before {
+	content: "\e001";
+}
+
+.flaticon-calendar60:before {
+	content: "\e002";
+}
+
+.flaticon-call10:before {
+	content: "\e003";
+}
+
+.flaticon-call37:before {
+	content: "\e004";
+}
+
+.flaticon-earth213:before {
+	content: "\e005";
+}
+
+.flaticon-earth26:before {
+	content: "\e006";
+}
+
+.flaticon-email109:before {
+	content: "\e007";
+}
+
+.flaticon-envelope32:before {
+	content: "\e008";
+}
+
+.flaticon-envelope54:before {
+	content: "\e009";
+}
+
+.flaticon-facebook54:before {
+	content: "\e00a";
+}
+
+.flaticon-review2:before {
+	content: "\e00b";
+}
+
+.flaticon-letter121:before {
+	content: "\e00c";
+}
+
+.flaticon-maximize2:before {
+	content: "\e00d";
+}
+
+.flaticon-note65:before {
+	content: "\e00e";
+}
+
+.flaticon-notebook88:before {
+	content: "\e00f";
+}
+
+.flaticon-notepads1:before {
+	content: "\e010";
+}
+
+.flaticon-round66:before {
+	content: "\e011";
+}
+
+.flaticon-situation:before {
+	content: "\e012";
+}
+
+.flaticon-sms1:before {
+	content: "\e013";
+}
+
+.flaticon-social123:before {
+	content: "\e014";
+}
+
+.flaticon-speechbubble47:before {
+	content: "\e015";
+}
+
+.flaticon-telephone114:before {
+	content: "\e016";
+}
+
+.flaticon-textlines8:before {
+	content: "\e017";
+}
+
+.flaticon-twitter42:before {
+	content: "\e018";
+}
+
+.flaticon-web39:before {
+	content: "\e019";
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Users</title>
+</head>
+<body th:attr="data-navlink=${navlink}">
+	<div layout:fragment="content" class="container-fluid">
+		<div class="page-header header-background">
+			<h1>
+				<span>Users</span>
+				<div role="toolbar" class="pull-right hide">
+					<div class="btn-group">
+						<button type="button" class="btn btn-white btn-success" id="home">
+							<i class="ace-icon fa fa-home bigger-120"></i>
+						</button>
+						<button type="button" class="btn btn-white btn-warning"
+							id="delete">
+							<i class="ace-icon fa fa-trash-o bigger-120"></i>Delete
+						</button>
+						<button type="button" class="btn btn-white btn-primary"
+							id="add-user">
+							<i class="ace-icon fa fa-user-plus bigger-120"></i>Add User
+						</button>
+						<button type="button" class="btn btn-white btn-primary"
+							id="upload-users">
+							<i class="ace-icon fa fa-user-plus bigger-120"></i>Upload Users
+						</button>
+					</div>
+				</div>
+			</h1>
+		</div>		
+		<div class="row">
+			<!-- begin col-12 -->
+			<div class="col-md-12 ui-sortable">
+				<table
+					class="table table-bordered table-hover no-margin-bottom no-border-top"
+					id="as-list">
+					<thead>
+						<tr>
+							<th></th>
+
+							<th>Id</th>
+							<th>Name</th>
+							<th>Login</th>
+							<th>Mobile</th>
+							<th>Organization</th>
+							<th>Created Date</th>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block th:each="user : ${users}">
+							<tr>
+								<td class="center"><label class="pos-rel"> <input
+										type="checkbox" th:attr="data-as-id=${user.id}" class="ace" />
+										<span class="lbl"></span>
+								</label></td>
+								<td th:text="${user.id}">Id</td>
+								<td><a th:href="@{/users/edit/{id}(id=${user.id})}"
+									th:text="${user.firstName + ', ' + user.lastName}" title="Name">Name</a></td>
+								<td th:text="${user.primaryEmail}"
+									title="Primary Email">Email</td>
+								<td th:text="${user.registeredMobile}" title="Registered Mobile">Mobile</td>
+								<td
+									th:text="(${user.organization} != null)? ${user.organization.name}"
+									title="Organization">Organization</td>
+								<td
+									th:text="${T(scanon.utils.DateUtil).getDisplayDate(user.createdDate)}"
+									title="Created Date">Created Date</td>
+							</tr>
+						</th:block>
+					</tbody>
+				</table>
+
+				<!-- end col-12 -->
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="scripts">
+		<script static:src="@{/js/datatables/js/jquery.dataTables.min.js}"
+			type="text/javascript"></script>
+		<script static:src="@{/js/datatables/js/dataTables.bootstrap.min.js}"
+			type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$('#as-list').DataTable({
+					"iDisplayLength" : 25,
+					language: {
+				        searchPlaceholder: "Enter text..."
+				    }
+				});
+			});
+		</script>
+	</th:block>
+</body>
+</html>

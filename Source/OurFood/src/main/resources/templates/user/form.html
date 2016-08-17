@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="static">
+<head>
+<title>User : Login</title>
+<!-- <link href="http://ironsummitmedia.github.io/startbootstrap-sb-admin-2/bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet" /> -->
+</head>
+<body>
+	<div layout:fragment="content" class="container">		
+		<div class="row vertical-align">		
+			<div class="col-md-4 col-md-offset-4">
+				<form id="registerForm" th:action="@{/users/register}" action="#" method="post" role="form" class="form-horizontal" th:object="${register}">
+					<div class="row" th:if="${#fields.hasErrors('*')}">
+						<div class="col-md-12">
+							<div class="note note-danger">
+								<h4>Validation errors</h4>
+								<p th:each="error : ${#fields.errors('*')}" th:text="${error}">Validation errors</p>
+							</div>
+						</div>
+					</div>
+					<fieldset>
+						<div class="form-group row">
+							<label for="first-name" class="sr-only control-label">First Name</label>
+							<div class="col-md-6">
+								<input type="text" th:field="*{firstName}" placeholder="First Name" class="form-control input-xs" id="first-name" required="required" pattern="/^[\w'\s]+$/" />
+							</div>
+							<label for="last-name" class="sr-only control-label">Last Name</label>
+							<div class="col-md-6">
+								<input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control input-xs" id="last-name" required="required" pattern="/^[\w'\s]+$/" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="sr-only control-label">E-Mail Address</label>
+							<div class="col-md-12">
+								<input type="email" maxlength="225" th:field="*{primaryEmail}" placeholder="E-mail" class="form-control" id="email" required="required"  data-parsley-remote="/users/validatePrimaryEmail" th:attr="data-parsley-remote-message=#{user.notunique.primaiyEmail}" />
+							</div>
+						</div>
+						<div class="form-group" sec:authorize="hasRole('PERM_PLATFORM_UPDATE')">
+							<label for="organization" class="sr-only control-label">Organization</label>
+							<div class="col-md-12">
+								<input type="number" th:field="*{org}" placeholder="Organization" class="form-control" id="organization" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="sr-only control-label">Password</label>
+							<div class="col-md-12">
+								<input type="password" maxlength="225" value="" th:field="*{password}" placeholder="Password" class="form-control" id="password" required="required" />
+							</div>
+						</div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-lg btn-success pull-right" value="Register" />
+                            </div>
+                        </div>
+                    </fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script layout:fragment="script" type="text/javascript">
+		$(document).ready(function() {
+			$('#registerForm').parsley();
+		});
+	</script>
+</body>
+</html>

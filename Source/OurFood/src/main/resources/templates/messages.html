@@ -1,0 +1,8 @@
+<th:block th:fragment="message (message, messageStatus)">
+	<div class="col-md-12" th:if="${message}">
+		<div class="note note-info">
+			<h4>Success</h4>
+			<p th:text="${message}">Success Message</p>
+		</div>
+	</div>
+</th:block>
