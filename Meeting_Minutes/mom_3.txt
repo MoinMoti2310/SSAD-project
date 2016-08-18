@@ -1,0 +1,22 @@
+Time: 7:30pm-
+Date: 17 August, 2016
+
+People Present:
+    Bakhtiyar Syed
+    Moin Moti
+    Konigari Rachna
+    Nitin John Raj
+    Raghu Mulukoju (technical head)
+
+Aims:
+    1. Set up working environments on our PCs.
+    2. Show Mr. Mulukoju our rough mapping between actors.
+
+During Meeting:
+    1. Noted that an order from a buyer/seller may be attached to many items, not just one i.e. one order may request multiple items.
+    2. Started the setup of the working environments.
+    3. Planned a meet for 18 August, 2016 (time to be decided) to complete the process, due to unforseen difficulties.
+
+Post-Meeting Goals:
+    1. Organize the code on the repositories. (Maybe?)
+    2. Try to fix the issues faced during setup.

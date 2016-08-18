@@ -1,0 +1,36 @@
+Time: 3:30pm-4:15pm
+Date: 12 August, 2016
+
+People Present:
+    Bakhtiyar Syed
+    Moin Moti
+    Konigari Rachna
+    Nitin John Raj
+    Raghu Mulukoju (technical head)
+
+Aims:
+    1. To request the client to allow GitLab over BitBucket.
+    2. To decide a solid timetable with strong deadlines for the overall project.
+
+During Meet:
+    1. Reported our team's technological experience.
+        i. OOPs
+        ii. Python
+        iii. Web2py
+        iv. MVC 
+    2. Discussed some basic concepts like:
+        i. OOPs
+        ii. code-driven programming over database-driven programming
+        iii. one-to-one, ont-to-many, many-to-one, many-to-many relationships between entities
+        iv. MVC
+    3. DON'T OVERENGINEER.
+    4. BitBucket preferred by client. Client will be contributing pieces of code. 
+
+Post-Meeting Goals:
+    1. Create the following entities with relationships using Spring Boot:
+        i. Farmer
+        ii. Order
+        iii. Admin
+        iv. Buyer
+    2. Request Raghu Reddy (prof) for permission to use BitBucket.
+    3. Install Spring Boot.

@@ -1,0 +1,37 @@
+Time: 3:30pm-4:30pm
+Date: 9 August, 2016
+
+People Present:
+    Bakhtiyar Syed
+    Moin Moti
+    Konigari Rachna
+    Nitin John Raj
+    Vamsee Chamakura (TA)
+    Bala Reddy (client)
+    Raghu Mulukoju (technical head)
+
+Aims:
+    1. Meet the client, get a basic understanding of the project.
+
+During Meeting:
+    1. Introductions
+    2. Understood what Our Food does
+    3. Basic workflow:
+        i. Farmer places order with Our Food.
+        ii. Our Food workers contact farmer, examine and grade produce, upload quality to cloud.
+        iii. Engine evaluates the best price based on quality, logistics, etc., sends it back to the farmer.
+        iv. Farmer accepts or declines price. Negotiations may or may not happen, but if they do, it will be offline.
+        v. Farmer produce processed by Our Food factories.
+        vi. Our Food sells processed food in bulk to buyers, based on market trends, location, etc.
+    4. Decided on Spring Boot technology, and discussed technological basics.
+    5. Decided on 10-hour weeks per person.
+    6. BitBucket requested for uploading the project.
+
+Post-Meeting Goals:
+    1. Set up basic communication system (WhatsApp group).
+    2. Install Spring Boot.
+    3. Get a basic feel for Java.
+    4. Look at Ninja Kart.
+
+Others:
+    1. Bakhtiyar acknowledged as point of contact.
