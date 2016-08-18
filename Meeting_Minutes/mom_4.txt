@@ -1,0 +1,18 @@
+Time: 6:00pm-8:00pm
+Date: 18 August, 2016
+
+People Present:
+    Bakhtiyar Syed
+    Moin Moti
+    Konigari Rachna
+    Nitin John Raj
+    Raghu Mulukoju (technical head)
+
+Aims:
+    1. Complete the setup of work environment.
+
+During Meet:
+    1. Continued attempt to set up environment. (Bakhtiyar and Rachna successful, Moin and Nitin still having errors - FileNotFoundException)
+
+Post-Meeting Goals:
+    1. Try to set it up. Review what Bakhtiyar and Rach have done to see if there were any differences in set up. Use online forums for the same.
