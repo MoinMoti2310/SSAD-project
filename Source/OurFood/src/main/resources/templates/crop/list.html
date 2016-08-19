@@ -52,22 +52,7 @@
 					<tbody>
 						<th:block th:each="user : ${users}">
 							<tr>
-								<td class="center"><label class="pos-rel"> <input
-										type="checkbox" th:attr="data-as-id=${user.id}" class="ace" />
-										<span class="lbl"></span>
-								</label></td>
-								<td th:text="${user.id}">Id</td>
-								<td><a th:href="@{/users/edit/{id}(id=${user.id})}"
-									th:text="${user.firstName + ', ' + user.lastName}" title="Name">Name</a></td>
-								<td th:text="${user.primaryEmail}"
-									title="Primary Email">Email</td>
-								<td th:text="${user.registeredMobile}" title="Registered Mobile">Mobile</td>
-								<td
-									th:text="(${user.organization} != null)? ${user.organization.name}"
-									title="Organization">Organization</td>
-								<td
-									th:text="${T(ourfood.utils.DateUtil).getDisplayDate(user.createdDate)}"
-									title="Created Date">Created Date</td>
+								
 							</tr>
 						</th:block>
 					</tbody>
