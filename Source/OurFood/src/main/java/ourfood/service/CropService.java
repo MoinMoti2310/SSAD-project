@@ -6,7 +6,7 @@ import ourfood.domain.Crop;
 
 public interface CropService {
 
-    Crop getCrop(Long id);
+    Crop getCrop(int id);
 
     void saveCrop(Crop crop);
 
