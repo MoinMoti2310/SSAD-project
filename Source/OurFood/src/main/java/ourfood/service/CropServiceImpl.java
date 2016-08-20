@@ -17,7 +17,7 @@ public class CropServiceImpl implements CropService {
     CropRepository cropRepo;
 
     @Override
-    public Crop getCrop(Long id) {
+    public Crop getCrop(int id) {
         // TODO Auto-generated method stub
         return null;
     }
