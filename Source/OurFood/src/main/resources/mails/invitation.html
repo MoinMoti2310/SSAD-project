@@ -9,7 +9,7 @@
 	<p>
 		Congratulations!!! You have been invited to the <b>Applite
 			Administration Platform</b> on <span
-			th:text="${T(scanon.utils.DateUtil).getDisplayDate(registrationDate)}">01-01-2015</span>
+			th:text="${T(ourfood.utils.DateUtil).getDisplayDate(registrationDate)}">01-01-2015</span>
 	</p>
 
 	<div th:switch="${platformUrl}">
@@ -36,7 +36,7 @@
 	</div>
 	<p>
 		This link is valid only till <b
-			th:text="${T(scanon.utils.DateUtil).getDisplayDate(resetToken.validTru)}">Today</b>
+			th:text="${T(ourfood.utils.DateUtil).getDisplayDate(resetToken.validTru)}">Today</b>
 	</p>
 	<p>
 		Regards, <br /> <em>Applite Platform Team</em>

@@ -208,6 +208,10 @@
 							href="/organization/list" title="Locations"> <i
 								class="menu-icon fa fa-caret-right"></i> Locations
 						</a> <b class="arrow"></b></li>
+						<li sec:authorize="hasRole('PERM_PLATFORM_UPDATE')"><a
+							href="/crop/create" title="Crop"> <i
+								class="menu-icon fa fa-caret-right"></i> Crop
+						</a> <b class="arrow"></b></li>
 					</ul></li>
 			</ul>
 			<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
