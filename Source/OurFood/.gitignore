@@ -4,7 +4,11 @@
 /bin/
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio
+<<<<<<< Updated upstream
 /src/main/resources/application-development.properties
+=======
+Source/OurFood/src/main/resources/application-development.properties
+>>>>>>> Stashed changes
 
 *.iml
 
