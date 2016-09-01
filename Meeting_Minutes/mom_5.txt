@@ -1,0 +1,40 @@
+Date: 1 September, 2016
+
+People Present:
+    Bakhtiyar Syed
+    Moin Moti
+    Konigari Rachna
+    Nitin John Raj
+    Raghu Mulukoju (technical head)
+
+Aims:
+    1. Discuss ways to speed process up to prepare for R1.
+    2. Try IntelliJ for Moin and Nitin.
+
+During Meeting:
+    1. Discussed general project structure - details given below.
+    2. Successfully ran application on IntelliJ IDEA. (Finally!)
+
+Post-Meeting Goals:
+    1. Identify design as group.
+    2. Create a list of questions for Mr. Bala next week.
+
+Others:
+    1. Bakhtiyar claimed Administration module.
+    2. Rachna claimed Seller's Processing module.
+    3. Moin claimed Buyer's Processing module.
+    4. Nitin claimed Price Deduction module.
+
+Date of Next Meeting: 6 September, 2016
+
+--------------------------------------------
+
+Notes:
+    4 modules: 
+        1. Administration:
+            Platform admin, primary admins, secondary admins
+        2. Seller Order Processing:
+            Farmer places order -> personnel checks quality -> price calculated -> reaches warehouse
+        3. Buyer Order Processing
+        4. Pricing
+            List of prices - transport route, weight of goods, crop, crop grade
