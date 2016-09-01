@@ -34,3 +34,5 @@ Post-Meeting Goals:
         iv. Buyer
     2. Request Raghu Reddy (prof) for permission to use BitBucket.
     3. Install Spring Boot.
+
+Date of Next Meeting: 17 August, 2016
