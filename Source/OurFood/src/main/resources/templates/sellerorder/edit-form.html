@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Seller Order</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+		<div class="page-header header-background">
+			<h1>Update Seller Order</h1>
+		</div>
+		<div class="row vertical-align">
+			<div class="col-md-10">
+				<form id="editForm"
+					th:action="@{/sellerorder/edit/{id}(id=${order.id})}" action="#"
+					method="post" role="form" class="form-horizontal"
+					th:object="${order}" th:attr="data-item-id=${order.id}">
+					<div class="row" th:if="${#fields.hasErrors('*')}">
+						<div class="col-md-12">
+							<div class="note note-danger">
+								<h4>Validation errors</h4>
+								<p th:each="error : ${#fields.errors('*')}" th:text="${error}">Validation
+									errors</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<fieldset>
+							<div class="form-group">
+								<label for="first-name" class="control-label col-md-2">Name</label>
+								<div class="col-md-4">
+									<input type="text" th:field="*{name}" placeholder="Name"
+										class="form-control input-sm mandatory" id="name"
+										required="required" pattern="/^[\w'\s]+$/" />
+								</div>
+								<label for="first-name" class="control-label col-md-2">Pin
+									Code</label>
+								<div class="col-md-4">
+									<input type="number" th:field="*{pinCode}"
+										placeholder="Pin Code" class="form-control input-sm mandatory"
+										id="pinCode" required="required" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="description" class="control-label col-md-2">Description</label>
+								<div class="col-md-4">
+									<textarea th:field="*{description}" placeholder="Description"
+										class="form-control mandatory" required="required"
+										id="description"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-2"></label>
+								<div class="col-md-4">
+									<input type="submit" id="btn-update"
+										class="btn btn-sm btn-success" value="Save" />
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script layout:fragment="script" type="text/javascript">
+		function updateItem(e) {
+
+			e.preventDefault();
+
+			var itemId = $(this).data("item-id");
+			var url = $(this).attr("action");
+
+			$.ajax({
+				type : 'POST',
+				url : url,
+				data : new FormData($(this)[0]),
+				cache : false,
+				processData : false,
+				contentType : false,
+				beforeSend : function() {
+					$("#btn-update").prop('disabled', true);
+				},
+				success : function(response) {
+					$("#btn-update").prop('disabled', false);
+					showMessage('Group updated successfully.', '', 'success');
+
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+
+					showMessage(XMLHttpRequest.responseText, '', 'error');
+					$("#btn-update").prop('disabled', false);
+				}
+			});
+		}
+
+		$(document).ready(function() {
+			$('#editForm').parsley();
+			$("#editForm").on("submit", updateItem);
+		});
+	</script>
+</body>
+</html>

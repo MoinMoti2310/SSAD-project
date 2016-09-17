@@ -51,6 +51,8 @@ public class SellerOrder implements Serializable {
 
     private PaymentStatus paymentStatus;
 
+    private int pinCode;
+
     public SellerOrder() {
 
     }
@@ -107,5 +109,13 @@ public class SellerOrder implements Serializable {
 
     public void setPaymentStatus(PaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
+    }
+
+    public int getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(int pinCode) {
+        this.pinCode = pinCode;
     }
 }

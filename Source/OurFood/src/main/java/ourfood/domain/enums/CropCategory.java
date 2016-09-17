@@ -9,7 +9,7 @@ package ourfood.domain.enums;
  * @author raghu.mulukoju
  */
 public enum CropCategory {
-    NONE(0L), PULSES(1L), VEGETABLES(2L), FRUITS(3L);
+    OTHERS(0L), PULSES(1L), VEGETABLES(2L), FRUITS(3L), MILLETS(4L), SPICES(5L);
 
     Long cropCategoryId;
 

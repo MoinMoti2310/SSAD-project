@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Seller Orders</title>
+</head>
+<body th:attr="data-navlink=${navlink}">
+	<div layout:fragment="content" class="container-fluid">
+		<div class="page-header header-background">
+			<h1>
+				Seller Orders
+				<div role="toolbar" id="as-actions" class="pull-right">
+					<div class="btn-group">
+						<button type="button" class="btn btn-white btn-warning"
+							id="btn-delete">
+							<i class="ace-icon fa fa-trash-o bigger-120"></i>Delete
+						</button>
+						<a type="button" class="btn btn-white btn-primary"
+							th:href="@{/sellerorder/create}">Add</a>
+					</div>
+				</div>
+			</h1>
+		</div>
+		<div class="row">
+			<div class="col-md-12 ui-sortable">
+				<table
+					class="table table-bordered table-hover no-margin-bottom no-border-top"
+					id="item-list">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Id</th>
+							<th>Name</th>
+							<th>PIN Code</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block th:each="order : ${orders}">
+							<tr>
+								<td class="center"><label class="pos-rel"> <input
+										type="checkbox" th:attr="data-item-id=${order.id}" class="ace" />
+										<span class="lbl"></span>
+								</label></td>
+								<td><span th:text="${order.id}">ID</span></td>
+								<td><a th:href="@{/sellerorder/edit/{id}(id=${order.id})}"
+									th:text="${order.name}" th:title="${order.name}">Name</a></td>
+								<td><span th:text="${order.pinCode}">PIN</span></td>
+								<td><span th:text="${order.description}">Description</span></td>
+							</tr>
+						</th:block>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="modal fade" id="modal-delete-items" tabindex="-1"
+			role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="modalLabel">Delete Seller
+							Accounts</h4>
+					</div>
+					<form id="form-delete-items" action="@{/sellerorder/delete}"
+						method="post">
+						<div class="modal-body">
+							<input type="hidden" name="itemIds[]" value="" /> Do you want to
+							delete the selected seller orders?<span id="delete-item-name"></span>
+						</div>
+						<div class="modal-footer">
+							<input type="submit" id="btn-delete-items" class="btn btn-danger"
+								value="Delete" />
+							<button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="scripts">
+		<script static:src="@{/js/datatables/js/jquery.dataTables.min.js}"
+			type="text/javascript"></script>
+		<script static:src="@{/js/datatables/js/dataTables.bootstrap.min.js}"
+			type="text/javascript"></script>
+		<script type="text/javascript">
+			function deleteItems() {
+
+				var boxes = $("#item-list input[type=checkbox]:checked");
+				itemIds = [];
+
+				$.each(boxes, function(index, box) {
+					itemIds.push($(box).data("item-id"))
+				})
+
+				if (itemIds.length > 0) {
+					$('#modal-delete-items').modal('show');
+					var modal = $(this);
+					$('#modal-delete-items').find(
+							'.modal-body input[name="itemIds[]"]').val(itemIds);
+				} else {
+					showMessage('Please select an order to delete', '',
+							'warning');
+				}
+			}
+
+			function disableDeleteBtn() {
+				$("#btn-delete-items").prop('disabled', true);
+			}
+
+			$(document).ready(function() {
+
+				$('#form-delete-items').parsley();
+				$("#btn-delete").on("click", deleteItems);
+				$("#form-delete-items").on("submit", disableDeleteBtn);
+
+				$('#item-list').DataTable({
+					"iDisplayLength" : 25,
+					language : {
+						searchPlaceholder : "Search..."
+					}
+				});
+			});
+		</script>
+	</th:block>
+</body>
+</html>
