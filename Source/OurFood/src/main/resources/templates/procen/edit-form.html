@@ -3,19 +3,19 @@
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Buyer Account</title>
+<title>Processing Center</title>
 </head>
 <body>
 	<div layout:fragment="content" class="container">
 		<div class="page-header header-background">
-			<h1>Update Buyer Account</h1>
+			<h1>Update Processing Center</h1>
 		</div>
 		<div class="row vertical-align">
 			<div class="col-md-10">
 				<form id="editForm"
-					th:action="@{/buyacc/edit/{id}(id=${account.id})}" action="#"
+					th:action="@{/procen/edit/{id}(id=${proCen.id})}" action="#"
 					method="post" role="form" class="form-horizontal"
-					th:object="${account}" th:attr="data-item-id=${account.id}">
+					th:object="${proCen}" th:attr="data-item-id=${proCen.id}">
 					<div class="row" th:if="${#fields.hasErrors('*')}">
 						<div class="col-md-12">
 							<div class="note note-danger">
@@ -43,11 +43,29 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label for="first-name" class="control-label col-md-2">Processing
+									Capacity</label>
+								<div class="col-md-4">
+									<input type="number" th:field="*{processingCapacity}"
+										placeholder="Processing Capacity"
+										class="form-control input-sm mandatory"
+										id="processingCapacity" required="required" />
+								</div>
+								<label for="first-name" class="control-label col-md-2">Storage
+									Capacity Code</label>
+								<div class="col-md-4">
+									<input type="number" th:field="*{storageCapacity}"
+										placeholder="Storage Capacity"
+										class="form-control input-sm mandatory" id="storageCapacity"
+										required="required" />
+								</div>
+							</div>
+							<div class="form-group">
 								<label for="description" class="control-label col-md-2">Description</label>
 								<div class="col-md-4">
 									<textarea th:field="*{description}" placeholder="Description"
-										class="form-control mandatory" required="required"
-										id="description"></textarea>
+										class="form-control mandatory" id="description"
+										required="required"></textarea>
 								</div>
 							</div>
 							<div class="form-group">

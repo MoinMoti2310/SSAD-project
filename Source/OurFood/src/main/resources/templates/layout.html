@@ -137,9 +137,8 @@
 						</a> <b class="arrow"></b></li>
 					</ul></li>
 				<li sec:authorize="hasRole('PERM_PLATFORM_UPDATE')"><a href="#"
-					class="dropdown-toggle"> <i
-						class="menu-icon fa fa-institution fa-fw"></i> <span
-						class="menu-text"> Accounts </span> <b
+					class="dropdown-toggle"> <i class="menu-icon fa fa-users fa-fw"></i>
+						<span class="menu-text"> Seller Accounts </span> <b
 						class="arrow fa fa-angle-down"></b>
 				</a> <b class="arrow"></b>
 					<ul class="submenu">
@@ -151,6 +150,14 @@
 							href="/sellacc/list" title="View Orgs"> <i
 								class="menu-icon fa fa-caret-right"></i> View Seller Accounts
 						</a> <b class="arrow"></b></li>
+					</ul></li>
+				<li sec:authorize="hasRole('PERM_PLATFORM_UPDATE')"><a href="#"
+					class="dropdown-toggle"> <i
+						class="menu-icon fa fa-users fa-fw"></i> <span
+						class="menu-text"> Buyer Accounts </span> <b
+						class="arrow fa fa-angle-down"></b>
+				</a> <b class="arrow"></b>
+					<ul class="submenu">
 						<li sec:authorize="hasRole('PERM_PLATFORM_UPDATE')"><a
 							href="/buyacc/create" title="Create Org"> <i
 								class="menu-icon fa fa-caret-right"></i> Create Buyer Account
@@ -158,15 +165,6 @@
 						<li sec:authorize="hasRole('PERM_PLATFORM_UPDATE')"><a
 							href="/buyacc/list" title="View Orgs"> <i
 								class="menu-icon fa fa-caret-right"></i> View Buyer Accounts
-						</a> <b class="arrow"></b></li>
-						<li
-							sec:authorize="hasAnyRole('PERM_PLATFORM_UPDATE', 'PERM_ORG_UPDATE')"><a
-							th:href="@{/users/invite}" title="Create User"> <i
-								class="menu-icon fa fa-caret-right"></i> Create User
-						</a> <b class="arrow"></b></li>
-						<li sec:authorize="hasRole('PERM_PLATFORM_UPDATE')"><a
-							th:href="@{/users/list}" title="View Users"> <i
-								class="menu-icon fa fa-caret-right"></i> View Users
 						</a> <b class="arrow"></b></li>
 					</ul></li>
 				<li sec:authorize="hasRole('PERM_PLATFORM_UPDATE')"><a href="#"
@@ -185,12 +183,28 @@
 								class="menu-icon fa fa-caret-right"></i> Price Index (Buyer)
 						</a> <b class="arrow"></b></li>
 						<li sec:authorize="hasRole('PERM_PLATFORM_UPDATE')"><a
-							href="/organization/list" title="Processing Centers"> <i
+							href="/procen/list" title="Processing Centers"> <i
 								class="menu-icon fa fa-caret-right"></i> Processing Centers
 						</a> <b class="arrow"></b></li>
 						<li sec:authorize="hasRole('PERM_PLATFORM_UPDATE')"><a
 							href="/crop/list" title="Crops"> <i
 								class="menu-icon fa fa-caret-right"></i> Crops
+						</a> <b class="arrow"></b></li>						
+					</ul></li>
+				<li sec:authorize="hasRole('PERM_PLATFORM_UPDATE')"><a href="#"
+					class="dropdown-toggle"> <i class="menu-icon fa fa-users fa-fw"></i>
+						<span class="menu-text"> Users </span> <b
+						class="arrow fa fa-angle-down"></b>
+				</a> <b class="arrow"></b>
+					<ul class="submenu">
+						<li
+							sec:authorize="hasAnyRole('PERM_PLATFORM_UPDATE', 'PERM_ORG_UPDATE')"><a
+							th:href="@{/users/invite}" title="Create User"> <i
+								class="menu-icon fa fa-caret-right"></i> Create User
+						</a> <b class="arrow"></b></li>
+						<li sec:authorize="hasRole('PERM_PLATFORM_UPDATE')"><a
+							th:href="@{/users/list}" title="View Users"> <i
+								class="menu-icon fa fa-caret-right"></i> View Users
 						</a> <b class="arrow"></b></li>
 					</ul></li>
 			</ul>
