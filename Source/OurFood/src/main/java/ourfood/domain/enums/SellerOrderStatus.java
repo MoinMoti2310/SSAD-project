@@ -17,7 +17,7 @@ public enum SellerOrderStatus {
         this.sellerOrderStatusId = sellerOrderStatusId;
     }
 
-    public Long getSelerOrderStatus() {
+    public Long getSellerOrderStatus() {
         return this.sellerOrderStatusId;
     }
 }
