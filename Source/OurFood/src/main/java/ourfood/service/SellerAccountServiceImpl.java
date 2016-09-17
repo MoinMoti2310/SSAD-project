@@ -6,43 +6,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import ourfood.domain.Crop;
 import ourfood.domain.Permissions;
+import ourfood.domain.SellerAccount;
 import ourfood.domain.User;
-import ourfood.service.repositories.CropRepository;
+import ourfood.service.repositories.SellerAccountRepository;
 
 @Component
 @Transactional
-public class CropServiceImpl implements CropService {
+public class SellerAccountServiceImpl implements SellerAccountService {
 
     @Autowired
-    CropRepository cropRepo;
+    SellerAccountRepository accountRepo;
 
     @Override
-    public Crop get(Long id) {
+    public SellerAccount get(Long id) {
 
-        Crop crop = cropRepo.findOne(id);
-        return crop;
+        SellerAccount account = accountRepo.findOne(id);
+        return account;
     }
 
     @Override
-    public void save(Crop crop) {
+    public void save(SellerAccount account) {
 
-        cropRepo.save(crop);
+        accountRepo.save(account);
     }
 
     @Override
-    public List<Crop> getAll() {
-        return cropRepo.findAll();
+    public List<SellerAccount> getAll() {
+        return accountRepo.findAll();
     }
 
     @Override
     public void delete(Long id, User user) {
-        Crop crop = cropRepo.findOne(id);
+        SellerAccount account = accountRepo.findOne(id);
 
-        if (crop != null) {
+        if (account != null) {
             if (user.hasRole(Permissions.PERM_PLATFORM_UPDATE)) {
-                cropRepo.delete(id);
+                accountRepo.delete(id);
             }
         }
     }
@@ -51,11 +51,11 @@ public class CropServiceImpl implements CropService {
     public void delete(Long[] ids, User user) {
 
         for (Long id : ids) {
-            Crop crop = cropRepo.findOne(id);
+            SellerAccount account = accountRepo.findOne(id);
 
-            if (crop != null) {
+            if (account != null) {
                 if (user.hasRole(Permissions.PERM_PLATFORM_UPDATE)) {
-                    cropRepo.delete(id);
+                    accountRepo.delete(id);
                 }
             }
         }

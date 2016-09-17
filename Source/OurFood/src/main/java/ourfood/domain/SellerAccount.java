@@ -8,19 +8,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import ourfood.domain.enums.CropCategory;
-
 /**
- * Domain object to represent Crop
+ * Domain object to represent Seller Account
  * 
  * @author raghu.mulukoju
  */
 @Entity
-public class Crop implements Serializable {
+public class SellerAccount implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,18 +33,11 @@ public class Crop implements Serializable {
     private String name;
 
     private String description;
-    
-    @NotNull
-    private CropCategory category;
 
-    public Crop() {
+    private int pinCode;
 
-    }
+    public SellerAccount() {
 
-    public Crop(String name, CropCategory category) {
-
-        this.name = name;
-        this.category = category;
     }
 
     public Long getId() {
@@ -69,11 +64,11 @@ public class Crop implements Serializable {
         this.description = description;
     }
 
-    public CropCategory getCropCategory() {
-        return category;
+    public int getPinCode() {
+        return pinCode;
     }
 
-    public void setCropCategory(CropCategory category) {
-        this.category = category;
+    public void setPinCode(int pinCode) {
+        this.pinCode = pinCode;
     }
 }

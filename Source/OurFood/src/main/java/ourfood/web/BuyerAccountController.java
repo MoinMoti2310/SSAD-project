@@ -16,95 +16,98 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import ourfood.domain.Crop;
+import ourfood.domain.BuyerAccount;
 import ourfood.domain.User;
-import ourfood.service.CropService;
+import ourfood.service.BuyerAccountService;
 
 /**
- * Endpoint for crop CRUD
+ * Endpoint for Buyer Account CRUD
  * 
  * @author raghu.mulukoju
  */
-@RequestMapping(value = "/crop")
+@RequestMapping(value = "/buyacc")
 @Controller
-public class CropController {
+public class BuyerAccountController {
 
     @Autowired
-    private CropService cropService;
+    private BuyerAccountService buyAccService;
 
     /**
-     * Display form to create crop
+     * Display form to create buyer account
      */
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
-    public String createForm(@ModelAttribute Crop crop, Model model) {
+    public String createForm(@ModelAttribute BuyerAccount account, Model model) {
 
-        return "crop/form";
+        // NOTE: Spring follows naming conventions for default autowiring of objects
+        // Adding model attribute may not be required if the parameter name is buyerAccount instead of account
+        model.addAttribute("account", account);
+        return "buyacc/form";
     }
 
     /**
-     * Create new crop
+     * Create new buyer account
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     @Transactional(rollbackOn = Exception.class)
-    public String create(@ModelAttribute Crop crop, Authentication auth) throws NoSuchMethodException,
+    public String create(@ModelAttribute BuyerAccount account, Authentication auth) throws NoSuchMethodException,
             SecurityException {
 
         try {
 
-            cropService.save(crop);
-            return "redirect:/crop/list";
+            buyAccService.save(account);
+            return "redirect:/buyacc/list";
         } catch (Exception e) {
             return "redirect:/blank";
         }
     }
 
     /**
-     * Display form to edit
+     * Display form to edit buyer account
      */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     public String editForm(@PathVariable Long id, Model model) {
 
-        Crop crop = cropService.get(id);
-        model.addAttribute("crop", crop);
-        return "crop/edit-form";
+        BuyerAccount account = buyAccService.get(id);
+        model.addAttribute("account", account);
+        return "buyacc/edit-form";
     }
 
     /**
-     * Edit crop
+     * Edit buyer account
      */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     @Transactional(rollbackOn = Exception.class)
-    public String editAjax(@ModelAttribute Crop crop, Authentication auth) throws NoSuchMethodException,
+    public String editAjax(@ModelAttribute BuyerAccount account, Authentication auth) throws NoSuchMethodException,
             SecurityException {
 
         try {
 
-            cropService.save(crop);
-            return "redirect:/crop/list";
+            buyAccService.save(account);
+            return "redirect:/buyacc/list";
         } catch (Exception e) {
             return "redirect:/blank";
         }
     }
 
     /**
-     * Display form to list crops
+     * Display form to list buyer accounts
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     public String list(Model model) {
 
-        List<Crop> crops = cropService.getAll();
-        model.addAttribute("crops", crops);
+        List<BuyerAccount> accounts = buyAccService.getAll();
+        model.addAttribute("accounts", accounts);
 
-        return "crop/list";
+        return "buyacc/list";
     }
 
     /**
-     * Method to delete a crops
+     * Method to delete a buyer accounts
      */
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -113,10 +116,10 @@ public class CropController {
         User user = (User) auth.getPrincipal();
 
         try {
-            // User authorization to delete the crop is verified in the service
-            this.cropService.delete(itemIds, user);
-            redirect.addFlashAttribute("successMessage", "Successfully deleted selected crops.");
-            return "redirect:/crop/list";
+            // User authorization to delete the buyer accounts is verified in the service
+            this.buyAccService.delete(itemIds, user);
+            redirect.addFlashAttribute("successMessage", "Successfully deleted selected accounts.");
+            return "redirect:/buyacc/list";
         } catch (Exception e) {
             redirect.addFlashAttribute("errorMessage", "An error occured while deleting, please contact administrator");
             return ("redirect:/blank");
