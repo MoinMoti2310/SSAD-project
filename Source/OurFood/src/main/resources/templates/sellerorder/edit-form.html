@@ -27,18 +27,21 @@
 					</div>
 					<div class="row">
 						<fieldset>
-							<h4>Order Details</h4>
+							<h4 class="orange">Order Details</h4>
 							<div class="form-group">
 								<label for="orderId" class="control-label col-md-2">Order
 									ID</label>
 								<div class="col-md-4">
-									<label for="orderId" class="control-label"
-										th:text="${order.id}">Order ID</label>
+									<label for="orderId" class="control-label"> <a
+										th:href="@{/sellerorder/edit/{id}(id=${order.id})}"
+										th:text="${order.id}"></a>
+									</label>
 								</div>
 								<label for="account" class="control-label col-md-2">Account</label>
 								<div class="col-md-4">
-									<label for="account" class="control-label"
-										th:text="${order.account.name}">Account Name</label>
+									<label for="account" class="control-label"><a
+										th:href="@{/selleraccount/edit/{id}(id=${order.account.id})}"
+										th:text="${order.account.name}"></a></label>
 								</div>
 							</div>
 							<div class="form-group">
@@ -48,8 +51,6 @@
 										class="form-control input-sm mandatory" id="name"
 										required="required" pattern="/^[\w'\s]+$/" />
 								</div>
-							</div>
-							<div class="form-group">
 								<label for="first-name" class="control-label col-md-2">Location
 									(PIN)</label>
 								<div class="col-md-4">
@@ -86,41 +87,130 @@
 										id="description"></textarea>
 								</div>
 							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<h4 class="orange">Order Item Details</h4>
+									<div class="form-group">
+										<label for="produce" class="control-label col-md-4">Produce</label>
+										<div class="col-md-8">
+											<label for="produce" class="control-label"
+												th:text="${order.orderItems[0].produce.name}">Name</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="itemStatus" class="control-label col-md-4">Item
+											Status</label>
+										<div class="col-md-8">
+											<select class="form-control"
+												th:field="*{orderItems[0].status}">
+												<option
+													th:each="type : ${T(ourfood.domain.enums.SellerOrderItemStatus).values()}"
+													th:text="#{sellerOrderItemStatus. + ${type}}"
+													th:value="${type}"></option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="orderItem.Quantity" class="control-label col-md-4">Quantity</label>
+										<div class="col-md-8">
+											<input type="text" th:field="*{orderItems[0].quantity}"
+												placeholder="Quantity" class="form-control mandatory"
+												id="order.orderItems[0].quantity" required="required" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="orderItem.Price" class="control-label col-md-4">Final
+											Price (Rs)</label>
+										<div class="col-md-8">
+											<input type="text" th:field="*{orderItems[0].price}"
+												placeholder="Price" class="form-control"
+												id="order.orderItem.Price" />
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<h4 class="orange">Price Table (Market)</h4>
+									<div class="form-group">
+										<label for="produce" class="control-label col-md-4">Min.
+											price</label>
+										<div class="col-md-8">
+											<label for="produce" class="control-label green">102/Kg</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="produce" class="control-label col-md-4">Max.
+											price</label>
+										<div class="col-md-8">
+											<label for="produce" class="control-label red">132/Kg</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="produce" class="control-label col-md-4">Recommended
+											price</label>
+										<div class="col-md-8">
+											<label for="produce" class="control-label blue">130/Kg</label>
+										</div>
+									</div>
+								</div>
+							</div>
 							<hr />
-							<h4>Order Item Details</h4>
-							<div class="form-group">
-								<label for="produce" class="control-label col-md-2">Produce</label>
-								<div class="col-md-4">
-									<label for="produce" class="control-label"
-										th:text="${order.orderItems[0].produce.name}">Name</label>
+							<h4 class="orange">Quality Parameters</h4>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="moisture" class="control-label col-md-4">Moisture</label>
+									<div class="col-md-8">
+										<input type="text"
+											th:field="*{orderItems[0].quality.moisture}"
+											placeholder="Moisture" class="form-control" id="moisture" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="grainSize" class="control-label col-md-4">Grain
+										Size</label>
+									<div class="col-md-8">
+										<input type="text"
+											th:field="*{orderItems[0].quality.grainSize}"
+											placeholder="Grain Size" class="form-control" id="grainSize" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="millerIndex" class="control-label col-md-4">Miller
+										Index</label>
+									<div class="col-md-8">
+										<input type="text"
+											th:field="*{orderItems[0].quality.millerIndex}"
+											placeholder="Miller Index" class="form-control"
+											id="millerIndex" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="image" class="control-label col-md-4">Image
+									</label>
+									<div class="col-md-8">
+										<input type="url" th:field="*{orderItems[0].quality.image}"
+											placeholder="Image Url" class="form-control" id="image" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="qualityFactor" class="control-label col-md-4">Quality
+										Factor</label>
+									<div class="col-md-8">
+										<label for="qualityFactor" class="control-label red">0.87</label>
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="itemStatus" class="control-label col-md-2">Item
-									Status</label>
-								<div class="col-md-4">
-									<select class="form-control"
-										th:field="*{orderItems[0].status}">
-										<option
-											th:each="type : ${T(ourfood.domain.enums.SellerOrderItemStatus).values()}"
-											th:text="#{sellerOrderItemStatus. + ${type}}"
-											th:value="${type}"></option>
-									</select>
-								</div>
+							<div class="col-md-6">
+								<img alt="Produce Image" th:src="*{orderItems[0].quality.image}"
+									style="width: 200px; height: 200px" class="col-md-offset-2" />
 							</div>
-							<div class="form-group">
-								<label for="orderItem.Quantity" class="control-label col-md-2">Quantity</label>
-								<div class="col-md-4">
-									<input type="text" th:field="*{orderItems[0].quantity}"
-										placeholder="Quantity" class="form-control mandatory"
-										id="order.orderItems[0].quantity" required="required" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-2"></label>
-								<div class="col-md-4">
-									<input type="submit" id="btn-update"
-										class="btn btn-sm btn-success" value="Save" />
+							<!-- Save/Update -->
+							<div class="col-md-12">
+								<div class="form-group">
+									<label class="control-label col-md-2"></label>
+									<div class="col-md-4">
+										<input type="submit" id="btn-update"
+											class="btn btn-sm btn-success" value="Save" />
+									</div>
 								</div>
 							</div>
 						</fieldset>

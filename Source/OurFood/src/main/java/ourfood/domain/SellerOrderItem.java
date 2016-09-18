@@ -55,6 +55,7 @@ public class SellerOrderItem implements Serializable {
 
     private Long price;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private SellerOrderQuality quality;
 
     public SellerOrderItem() {

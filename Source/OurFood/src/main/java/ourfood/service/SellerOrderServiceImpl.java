@@ -63,9 +63,13 @@ public class SellerOrderServiceImpl implements SellerOrderService {
         orderRecord.setPaymentStatus(sellerOrder.getPaymentStatus());
         orderRecord.setStatus(orderRecord.getStatus());
 
+        SellerOrderItem sellerOrderItem = sellerOrder.getOrderItems().get(0);
+
         SellerOrderItem orderItemRecord = orderRecord.getOrderItems().get(0);
-        orderItemRecord.setQuantity(sellerOrder.getOrderItems().get(0).getQuantity());
-        orderItemRecord.setStatus(sellerOrder.getOrderItems().get(0).getStatus());
+        orderItemRecord.setQuantity(sellerOrderItem.getQuantity());
+        orderItemRecord.setStatus(sellerOrderItem.getStatus());
+        orderItemRecord.setQuality(sellerOrderItem.getQuality());
+        orderItemRecord.setPrice(sellerOrderItem.getPrice());
 
         sellerOrderRepo.save(orderRecord);
     }
