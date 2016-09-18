@@ -27,6 +27,20 @@
 					</div>
 					<div class="row">
 						<fieldset>
+							<h4>Order Details</h4>
+							<div class="form-group">
+								<label for="orderId" class="control-label col-md-2">Order
+									ID</label>
+								<div class="col-md-4">
+									<label for="orderId" class="control-label"
+										th:text="${order.id}">Order ID</label>
+								</div>
+								<label for="account" class="control-label col-md-2">Account</label>
+								<div class="col-md-4">
+									<label for="account" class="control-label"
+										th:text="${order.account.name}">Account Name</label>
+								</div>
+							</div>
 							<div class="form-group">
 								<label for="first-name" class="control-label col-md-2">Name</label>
 								<div class="col-md-4">
@@ -34,12 +48,34 @@
 										class="form-control input-sm mandatory" id="name"
 										required="required" pattern="/^[\w'\s]+$/" />
 								</div>
-								<label for="first-name" class="control-label col-md-2">Pin
-									Code</label>
+							</div>
+							<div class="form-group">
+								<label for="first-name" class="control-label col-md-2">Location
+									(PIN)</label>
 								<div class="col-md-4">
-									<input type="number" th:field="*{pinCode}"
-										placeholder="Pin Code" class="form-control input-sm mandatory"
-										id="pinCode" required="required" />
+									<input type="text" th:field="*{pinCode}" placeholder="Pin Code"
+										class="form-control input-sm mandatory" id="pinCode"
+										required="required" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="orderStatus" class="control-label col-md-2">Order
+									Status</label>
+								<div class="col-md-4">
+									<select class="form-control" th:field="*{status}">
+										<option
+											th:each="type : ${T(ourfood.domain.enums.SellerOrderStatus).values()}"
+											th:text="#{sellerOrderStatus. + ${type}}" th:value="${type}"></option>
+									</select>
+								</div>
+								<label for="paymentStatus" class="control-label col-md-2">Payment
+									Status</label>
+								<div class="col-md-4">
+									<select class="form-control" th:field="*{paymentStatus}">
+										<option
+											th:each="type : ${T(ourfood.domain.enums.PaymentStatus).values()}"
+											th:text="#{paymentStatus. + ${type}}" th:value="${type}"></option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -48,6 +84,36 @@
 									<textarea th:field="*{description}" placeholder="Description"
 										class="form-control mandatory" required="required"
 										id="description"></textarea>
+								</div>
+							</div>
+							<hr />
+							<h4>Order Item Details</h4>
+							<div class="form-group">
+								<label for="produce" class="control-label col-md-2">Produce</label>
+								<div class="col-md-4">
+									<label for="produce" class="control-label"
+										th:text="${order.orderItems[0].produce.name}">Name</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="itemStatus" class="control-label col-md-2">Item
+									Status</label>
+								<div class="col-md-4">
+									<select class="form-control"
+										th:field="*{orderItems[0].status}">
+										<option
+											th:each="type : ${T(ourfood.domain.enums.SellerOrderItemStatus).values()}"
+											th:text="#{sellerOrderItemStatus. + ${type}}"
+											th:value="${type}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="orderItem.Quantity" class="control-label col-md-2">Quantity</label>
+								<div class="col-md-4">
+									<input type="text" th:field="*{orderItems[0].quantity}"
+										placeholder="Quantity" class="form-control mandatory"
+										id="order.orderItems[0].quantity" required="required" />
 								</div>
 							</div>
 							<div class="form-group">

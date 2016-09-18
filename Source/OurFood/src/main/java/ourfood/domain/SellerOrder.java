@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -46,6 +47,7 @@ public class SellerOrder implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
     private List<SellerOrderItem> orderItems;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private SellerAccount account;
 
     private SellerOrderStatus status;

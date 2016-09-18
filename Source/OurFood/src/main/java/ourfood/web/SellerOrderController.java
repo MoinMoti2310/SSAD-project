@@ -16,8 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ourfood.domain.Produce;
+import ourfood.domain.SellerAccount;
 import ourfood.domain.SellerOrder;
 import ourfood.domain.User;
+import ourfood.domain.enums.SellerOrderItemStatus;
+import ourfood.service.ProduceService;
+import ourfood.service.SellerAccountService;
 import ourfood.service.SellerOrderService;
 
 /**
@@ -32,6 +37,12 @@ public class SellerOrderController {
     @Autowired
     private SellerOrderService sellerOrderService;
 
+    @Autowired
+    private SellerAccountService sellerAccService;
+
+    @Autowired
+    private ProduceService produceService;
+
     /**
      * Display form to create seller order
      */
@@ -39,9 +50,14 @@ public class SellerOrderController {
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     public String createForm(@ModelAttribute SellerOrder order, Model model) {
 
+        List<SellerAccount> accounts = sellerAccService.getAll();
+        List<Produce> produces = produceService.getAll();
+
         // NOTE: Spring follows naming conventions for default autowiring of objects
         // Adding model attribute may not be required if the parameter name is sellerAccount instead of order
         model.addAttribute("order", order);
+        model.addAttribute("accounts", accounts);
+        model.addAttribute("produces", produces);
         return "sellerorder/form";
     }
 
@@ -56,7 +72,9 @@ public class SellerOrderController {
 
         try {
 
-            sellerOrderService.save(order);
+            User user = (User) auth.getPrincipal();            
+
+            sellerOrderService.create(order, user);
             return "redirect:/sellerorder/list";
         } catch (Exception e) {
             return "redirect:/blank";
@@ -71,7 +89,13 @@ public class SellerOrderController {
     public String editForm(@PathVariable Long id, Model model) {
 
         SellerOrder order = sellerOrderService.get(id);
+        List<SellerAccount> accounts = sellerAccService.getAll();
+        List<Produce> produces = produceService.getAll();
+
         model.addAttribute("order", order);
+        model.addAttribute("accounts", accounts);
+        model.addAttribute("produces", produces);
+
         return "sellerorder/edit-form";
     }
 
@@ -86,7 +110,9 @@ public class SellerOrderController {
 
         try {
 
-            sellerOrderService.save(order);
+            User user = (User) auth.getPrincipal();
+
+            sellerOrderService.update(order, user);
             return "redirect:/sellerorder/list";
         } catch (Exception e) {
             return "redirect:/blank";

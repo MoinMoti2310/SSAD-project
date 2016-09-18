@@ -9,7 +9,7 @@ package ourfood.domain.enums;
  * @author raghu.mulukoju
  */
 public enum SellerOrderItemStatus {
-    NONE(0L), ORDERED(1L), INSPECTED(2L), ON_HOLD(3L), IN_PROCESSING_CENTER(4L), PROCESSED(5L);
+    NONE(0L), ORDERED(1L), INSPECTED(2L), IN_PROCESSING_CENTER(3L), PROCESSED(4L), ON_HOLD(5L);
 
     Long sellerOrderStatusId;
 

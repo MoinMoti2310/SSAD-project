@@ -6,13 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import ourfood.domain.Produce;
 import ourfood.domain.Permissions;
 import ourfood.domain.SellerOrder;
 import ourfood.domain.SellerOrderItem;
 import ourfood.domain.User;
+import ourfood.domain.enums.PaymentStatus;
 import ourfood.domain.enums.SellerOrderItemStatus;
+import ourfood.domain.enums.SellerOrderStatus;
 import ourfood.service.repositories.ProduceRepository;
+import ourfood.service.repositories.SellerOrderItemRepository;
 import ourfood.service.repositories.SellerOrderRepository;
 
 @Component
@@ -21,6 +23,9 @@ public class SellerOrderServiceImpl implements SellerOrderService {
 
     @Autowired
     SellerOrderRepository sellerOrderRepo;
+
+    @Autowired
+    SellerOrderItemRepository sellerOrderItemRepo;
 
     @Autowired
     ProduceRepository cropRepo;
@@ -33,22 +38,36 @@ public class SellerOrderServiceImpl implements SellerOrderService {
     }
 
     @Override
-    public void save(SellerOrder sellerOrder) {
+    public void create(SellerOrder order, User user) {
 
-        if (sellerOrder.getId() != null) {
+        order.setStatus(SellerOrderStatus.ORDERED);
+        order.setPaymentStatus(PaymentStatus.NOT_PAID);
 
-            SellerOrderItem orderItem = new SellerOrderItem();
-            orderItem.setPrice(100L);
-            orderItem.setQuantity(200L);
-            orderItem.setSellerOrderItemStatus(SellerOrderItemStatus.ORDERED);
+        SellerOrderItem sellerOrderItem = order.getOrderItems().get(0);
+        sellerOrderItem.setOrder(order);
+        sellerOrderItem.setStatus(SellerOrderItemStatus.ORDERED);
 
-            Produce produce = cropRepo.findOne(1L);
-            // orderItem.setCrop(crop);
+        sellerOrderRepo.save(order);
+    }
 
-            // sellerOrder.addOrderItem(orderItem);
-        }
+    @Override
+    public void update(SellerOrder sellerOrder, User user) {
 
-        sellerOrderRepo.save(sellerOrder);
+        // Update required fields
+        SellerOrder orderRecord = sellerOrderRepo.findOne(sellerOrder.getId());
+
+        orderRecord.setName(sellerOrder.getName());
+        orderRecord.setDescription(sellerOrder.getDescription());
+        orderRecord.setPinCode(sellerOrder.getPinCode());
+        orderRecord.setStatus(sellerOrder.getStatus());
+        orderRecord.setPaymentStatus(sellerOrder.getPaymentStatus());
+        orderRecord.setStatus(orderRecord.getStatus());
+
+        SellerOrderItem orderItemRecord = orderRecord.getOrderItems().get(0);
+        orderItemRecord.setQuantity(sellerOrder.getOrderItems().get(0).getQuantity());
+        orderItemRecord.setStatus(sellerOrder.getOrderItems().get(0).getStatus());
+
+        sellerOrderRepo.save(orderRecord);
     }
 
     @Override

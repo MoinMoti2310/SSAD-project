@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import ourfood.domain.enums.SellerOrderItemStatus;
@@ -36,8 +37,9 @@ public class SellerOrderItem implements Serializable {
     @Access(AccessType.PROPERTY)
     private Long id;
 
-    //@NotNull
-    //private Crop crop;
+    @NotNull
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Produce produce;
 
     @NotNull
     private Long quantity;
@@ -45,6 +47,7 @@ public class SellerOrderItem implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     @JsonIgnore
+    private
     SellerOrder order;
 
     @NotNull
@@ -66,19 +69,19 @@ public class SellerOrderItem implements Serializable {
         this.id = id;
     }
 
-    /*public Crop getCrop() {
-        return crop;
+    public Produce getProduce() {
+        return produce;
     }
 
-    public void setCrop(Crop crop) {
-        this.crop = crop;
-    }*/
+    public void setProduce(Produce produce) {
+        this.produce = produce;
+    }
 
-    public SellerOrderItemStatus getSellerOrderItemStatus() {
+    public SellerOrderItemStatus getStatus() {
         return status;
     }
 
-    public void setSellerOrderItemStatus(SellerOrderItemStatus status) {
+    public void setStatus(SellerOrderItemStatus status) {
         this.status = status;
     }
 
@@ -104,5 +107,13 @@ public class SellerOrderItem implements Serializable {
 
     public void setQuality(SellerOrderQuality quality) {
         this.quality = quality;
+    }
+
+    public SellerOrder getOrder() {
+        return order;
+    }
+
+    public void setOrder(SellerOrder order) {
+        this.order = order;
     }
 }
