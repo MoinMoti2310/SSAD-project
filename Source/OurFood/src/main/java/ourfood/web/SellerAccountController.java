@@ -25,12 +25,12 @@ import ourfood.service.SellerAccountService;
  * 
  * @author raghu.mulukoju
  */
-@RequestMapping(value = "/sellacc")
+@RequestMapping(value = "/selleraccount")
 @Controller
 public class SellerAccountController {
 
     @Autowired
-    private SellerAccountService sellAccService;
+    private SellerAccountService sellerAccService;
 
     /**
      * Display form to create seller account
@@ -42,7 +42,7 @@ public class SellerAccountController {
         // NOTE: Spring follows naming conventions for default autowiring of objects
         // Adding model attribute may not be required if the parameter name is sellerAccount instead of account
         model.addAttribute("account", account);
-        return "sellacc/form";
+        return "selleraccount/form";
     }
 
     /**
@@ -56,8 +56,8 @@ public class SellerAccountController {
 
         try {
 
-            sellAccService.save(account);
-            return "redirect:/sellacc/list";
+            sellerAccService.save(account);
+            return "redirect:/selleraccount/list";
         } catch (Exception e) {
             return "redirect:/blank";
         }
@@ -70,9 +70,9 @@ public class SellerAccountController {
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     public String editForm(@PathVariable Long id, Model model) {
 
-        SellerAccount account = sellAccService.get(id);
+        SellerAccount account = sellerAccService.get(id);
         model.addAttribute("account", account);
-        return "sellacc/edit-form";
+        return "selleraccount/edit-form";
     }
 
     /**
@@ -86,8 +86,8 @@ public class SellerAccountController {
 
         try {
 
-            sellAccService.save(account);
-            return "redirect:/sellacc/list";
+            sellerAccService.save(account);
+            return "redirect:/selleraccount/list";
         } catch (Exception e) {
             return "redirect:/blank";
         }
@@ -100,10 +100,10 @@ public class SellerAccountController {
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     public String list(Model model) {
 
-        List<SellerAccount> accounts = sellAccService.getAll();
+        List<SellerAccount> accounts = sellerAccService.getAll();
         model.addAttribute("accounts", accounts);
 
-        return "sellacc/list";
+        return "selleraccount/list";
     }
 
     /**
@@ -117,9 +117,9 @@ public class SellerAccountController {
 
         try {
             // User authorization to delete the seller accounts is verified in the service
-            this.sellAccService.delete(itemIds, user);
+            this.sellerAccService.delete(itemIds, user);
             redirect.addFlashAttribute("successMessage", "Successfully deleted selected accounts.");
-            return "redirect:/sellacc/list";
+            return "redirect:/selleraccount/list";
         } catch (Exception e) {
             redirect.addFlashAttribute("errorMessage", "An error occured while deleting, please contact administrator");
             return ("redirect:/blank");

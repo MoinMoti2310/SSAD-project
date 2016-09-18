@@ -25,12 +25,12 @@ import ourfood.service.BuyerAccountService;
  * 
  * @author raghu.mulukoju
  */
-@RequestMapping(value = "/buyacc")
+@RequestMapping(value = "/buyeraccount")
 @Controller
 public class BuyerAccountController {
 
     @Autowired
-    private BuyerAccountService buyAccService;
+    private BuyerAccountService buyerAccService;
 
     /**
      * Display form to create buyer account
@@ -42,7 +42,7 @@ public class BuyerAccountController {
         // NOTE: Spring follows naming conventions for default autowiring of objects
         // Adding model attribute may not be required if the parameter name is buyerAccount instead of account
         model.addAttribute("account", account);
-        return "buyacc/form";
+        return "buyeraccount/form";
     }
 
     /**
@@ -56,8 +56,8 @@ public class BuyerAccountController {
 
         try {
 
-            buyAccService.save(account);
-            return "redirect:/buyacc/list";
+            buyerAccService.save(account);
+            return "redirect:/buyeraccount/list";
         } catch (Exception e) {
             return "redirect:/blank";
         }
@@ -70,9 +70,9 @@ public class BuyerAccountController {
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     public String editForm(@PathVariable Long id, Model model) {
 
-        BuyerAccount account = buyAccService.get(id);
+        BuyerAccount account = buyerAccService.get(id);
         model.addAttribute("account", account);
-        return "buyacc/edit-form";
+        return "buyeraccount/edit-form";
     }
 
     /**
@@ -86,8 +86,8 @@ public class BuyerAccountController {
 
         try {
 
-            buyAccService.save(account);
-            return "redirect:/buyacc/list";
+            buyerAccService.save(account);
+            return "redirect:/buyeraccount/list";
         } catch (Exception e) {
             return "redirect:/blank";
         }
@@ -100,10 +100,10 @@ public class BuyerAccountController {
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     public String list(Model model) {
 
-        List<BuyerAccount> accounts = buyAccService.getAll();
+        List<BuyerAccount> accounts = buyerAccService.getAll();
         model.addAttribute("accounts", accounts);
 
-        return "buyacc/list";
+        return "buyeraccount/list";
     }
 
     /**
@@ -117,9 +117,9 @@ public class BuyerAccountController {
 
         try {
             // User authorization to delete the buyer accounts is verified in the service
-            this.buyAccService.delete(itemIds, user);
+            this.buyerAccService.delete(itemIds, user);
             redirect.addFlashAttribute("successMessage", "Successfully deleted selected accounts.");
-            return "redirect:/buyacc/list";
+            return "redirect:/buyeraccount/list";
         } catch (Exception e) {
             redirect.addFlashAttribute("errorMessage", "An error occured while deleting, please contact administrator");
             return ("redirect:/blank");

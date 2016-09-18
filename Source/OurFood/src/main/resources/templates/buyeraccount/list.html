@@ -3,13 +3,13 @@
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Seller Accounts</title>
+<title>Buyer Accounts</title>
 </head>
 <body th:attr="data-navlink=${navlink}">
 	<div layout:fragment="content" class="container-fluid">
 		<div class="page-header header-background">
 			<h1>
-				Seller Accounts
+				Buyer Accounts
 				<div role="toolbar" id="as-actions" class="pull-right">
 					<div class="btn-group">
 						<button type="button" class="btn btn-white btn-warning"
@@ -17,7 +17,7 @@
 							<i class="ace-icon fa fa-trash-o bigger-120"></i>Delete
 						</button>
 						<a type="button" class="btn btn-white btn-primary"
-							th:href="@{/sellacc/create}">Add</a>
+							th:href="@{/buyeraccount/create}">Add</a>
 					</div>
 				</div>
 			</h1>
@@ -44,7 +44,7 @@
 										class="ace" /> <span class="lbl"></span>
 								</label></td>
 								<td><span th:text="${account.id}">ID</span></td>
-								<td><a th:href="@{/sellacc/edit/{id}(id=${account.id})}"
+								<td><a th:href="@{/buyeraccount/edit/{id}(id=${account.id})}"
 									th:text="${account.name}" th:title="${account.name}">Name</a></td>
 								<td><span th:text="${account.pinCode}">PIN</span></td>
 								<td><span th:text="${account.description}">Description</span></td>
@@ -63,14 +63,14 @@
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="modalLabel">Delete Seller
+						<h4 class="modal-title" id="modalLabel">Delete Buyer
 							Accounts</h4>
 					</div>
-					<form id="form-delete-items" action="@{/sellacc/delete}"
+					<form id="form-delete-items" action="@{/buyeraccount/delete}"
 						method="post">
 						<div class="modal-body">
 							<input type="hidden" name="itemIds[]" value="" /> Do you want to
-							delete the selected seller accounts?<span id="delete-item-name"></span>
+							delete the selected buyer accounts?<span id="delete-item-name"></span>
 						</div>
 						<div class="modal-footer">
 							<input type="submit" id="btn-delete-items" class="btn btn-danger"

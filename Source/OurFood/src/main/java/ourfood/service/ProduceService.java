@@ -2,16 +2,16 @@ package ourfood.service;
 
 import java.util.List;
 
-import ourfood.domain.Crop;
+import ourfood.domain.Produce;
 import ourfood.domain.User;
 
-public interface CropService {
+public interface ProduceService {
 
-    Crop get(Long id);
+    Produce get(Long id);
 
-    void save(Crop crop);
+    void save(Produce produce);
 
-    List<Crop> getAll();
+    List<Produce> getAll();
 
     void delete(Long id, User user);
 

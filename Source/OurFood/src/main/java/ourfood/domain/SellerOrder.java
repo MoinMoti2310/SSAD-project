@@ -1,6 +1,7 @@
 package ourfood.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -81,11 +82,27 @@ public class SellerOrder implements Serializable {
         this.description = description;
     }
 
-    /*
-     * public List<SellerOrderItem> getOrderItems() { return orderItems; }
-     * 
-     * public void setOrderItems(List<SellerOrderItem> orderItems) { this.orderItems = orderItems; }
-     */
+    public List<SellerOrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<SellerOrderItem> orderItems) {
+
+        if (this.orderItems == null) {
+            this.orderItems = new ArrayList<SellerOrderItem>();
+        }
+
+        this.orderItems = orderItems;
+    }
+
+    public void addOrderItem(SellerOrderItem orderItem) {
+
+        if (this.orderItems == null) {
+            this.orderItems = new ArrayList<SellerOrderItem>();
+        }
+        
+        this.orderItems.add(orderItem);
+    }
 
     public SellerAccount getAccount() {
         return account;

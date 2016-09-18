@@ -6,43 +6,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import ourfood.domain.Crop;
+import ourfood.domain.Produce;
 import ourfood.domain.Permissions;
 import ourfood.domain.User;
-import ourfood.service.repositories.CropRepository;
+import ourfood.service.repositories.ProduceRepository;
 
 @Component
 @Transactional
-public class CropServiceImpl implements CropService {
+public class ProduceServiceImpl implements ProduceService {
 
     @Autowired
-    CropRepository cropRepo;
+    ProduceRepository produceRepo;
 
     @Override
-    public Crop get(Long id) {
+    public Produce get(Long id) {
 
-        Crop crop = cropRepo.findOne(id);
-        return crop;
+        Produce produce = produceRepo.findOne(id);
+        return produce;
     }
 
     @Override
-    public void save(Crop crop) {
+    public void save(Produce produce) {
 
-        cropRepo.save(crop);
+        produceRepo.save(produce);
     }
 
     @Override
-    public List<Crop> getAll() {
-        return cropRepo.findAll();
+    public List<Produce> getAll() {
+        return produceRepo.findAll();
     }
 
     @Override
     public void delete(Long id, User user) {
-        Crop crop = cropRepo.findOne(id);
+        Produce produce = produceRepo.findOne(id);
 
-        if (crop != null) {
+        if (produce != null) {
             if (user.hasRole(Permissions.PERM_PLATFORM_UPDATE)) {
-                cropRepo.delete(id);
+                produceRepo.delete(id);
             }
         }
     }
@@ -51,11 +51,11 @@ public class CropServiceImpl implements CropService {
     public void delete(Long[] ids, User user) {
 
         for (Long id : ids) {
-            Crop crop = cropRepo.findOne(id);
+            Produce produce = produceRepo.findOne(id);
 
-            if (crop != null) {
+            if (produce != null) {
                 if (user.hasRole(Permissions.PERM_PLATFORM_UPDATE)) {
-                    cropRepo.delete(id);
+                    produceRepo.delete(id);
                 }
             }
         }

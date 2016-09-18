@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import ourfood.domain.Produce;
 import ourfood.domain.Permissions;
 import ourfood.domain.SellerOrder;
+import ourfood.domain.SellerOrderItem;
 import ourfood.domain.User;
+import ourfood.domain.enums.SellerOrderItemStatus;
+import ourfood.service.repositories.ProduceRepository;
 import ourfood.service.repositories.SellerOrderRepository;
 
 @Component
@@ -17,6 +21,9 @@ public class SellerOrderServiceImpl implements SellerOrderService {
 
     @Autowired
     SellerOrderRepository sellerOrderRepo;
+
+    @Autowired
+    ProduceRepository cropRepo;
 
     @Override
     public SellerOrder get(Long id) {
@@ -27,6 +34,19 @@ public class SellerOrderServiceImpl implements SellerOrderService {
 
     @Override
     public void save(SellerOrder sellerOrder) {
+
+        if (sellerOrder.getId() != null) {
+
+            SellerOrderItem orderItem = new SellerOrderItem();
+            orderItem.setPrice(100L);
+            orderItem.setQuantity(200L);
+            orderItem.setSellerOrderItemStatus(SellerOrderItemStatus.ORDERED);
+
+            Produce produce = cropRepo.findOne(1L);
+            // orderItem.setCrop(crop);
+
+            // sellerOrder.addOrderItem(orderItem);
+        }
 
         sellerOrderRepo.save(sellerOrder);
     }

@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import ourfood.domain.enums.ProduceGrade;
 import ourfood.domain.enums.SellerOrderItemStatus;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,8 +36,8 @@ public class SellerOrderItem implements Serializable {
     @Access(AccessType.PROPERTY)
     private Long id;
 
-    @NotNull
-    private Crop crop;
+    //@NotNull
+    //private Crop crop;
 
     @NotNull
     private Long quantity;
@@ -50,8 +49,6 @@ public class SellerOrderItem implements Serializable {
 
     @NotNull
     private SellerOrderItemStatus status;
-
-    private ProduceGrade produceGrade;
 
     private Long price;
 
@@ -69,12 +66,28 @@ public class SellerOrderItem implements Serializable {
         this.id = id;
     }
 
-    public ProduceGrade getProduceGrade() {
-        return produceGrade;
+    /*public Crop getCrop() {
+        return crop;
     }
 
-    public void setProduceGrade(ProduceGrade produceGrade) {
-        this.produceGrade = produceGrade;
+    public void setCrop(Crop crop) {
+        this.crop = crop;
+    }*/
+
+    public SellerOrderItemStatus getSellerOrderItemStatus() {
+        return status;
+    }
+
+    public void setSellerOrderItemStatus(SellerOrderItemStatus status) {
+        this.status = status;
+    }
+
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
     }
 
     public Long getPrice() {

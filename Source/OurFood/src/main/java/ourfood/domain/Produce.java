@@ -12,15 +12,15 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import ourfood.domain.enums.CropCategory;
+import ourfood.domain.enums.ProduceCategory;
 
 /**
- * Domain object to represent Crop
+ * Domain object to represent Produce
  * 
  * @author raghu.mulukoju
  */
 @Entity
-public class Crop implements Serializable {
+public class Produce implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,13 +33,13 @@ public class Crop implements Serializable {
     private String description;
     
     @NotNull
-    private CropCategory category;
+    private ProduceCategory category;
 
-    public Crop() {
+    public Produce() {
 
     }
 
-    public Crop(String name, CropCategory category) {
+    public Produce(String name, ProduceCategory category) {
 
         this.name = name;
         this.category = category;
@@ -69,11 +69,11 @@ public class Crop implements Serializable {
         this.description = description;
     }
 
-    public CropCategory getCropCategory() {
+    public ProduceCategory getProduceCategory() {
         return category;
     }
 
-    public void setCropCategory(CropCategory category) {
+    public void setProduceCategory(ProduceCategory category) {
         this.category = category;
     }
 }

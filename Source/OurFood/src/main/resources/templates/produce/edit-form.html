@@ -3,20 +3,20 @@
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Crop</title>
+<title>Produce</title>
 </head>
 <body>
 	<div layout:fragment="content" class="container">
 		<div class="page-header header-background">
 			<h1>
-				Update Crop				
+				Update Produce				
 			</h1>
 		</div>
 		<div class="row vertical-align">
 			<div class="col-md-10">
-				<form id="editForm" th:action="@{/crop/edit/{id}(id=${crop.id})}" action="#"
+				<form id="editForm" th:action="@{/produce/edit/{id}(id=${produce.id})}" action="#"
 					method="post" role="form" class="form-horizontal"
-					th:object="${crop}" th:attr="data-item-id=${crop.id}">
+					th:object="${produce}" th:attr="data-item-id=${produce.id}">
 					<div class="row" th:if="${#fields.hasErrors('*')}">
 						<div class="col-md-12">
 							<div class="note note-danger">
@@ -35,14 +35,14 @@
 										class="form-control input-sm mandatory" id="name" required="required"
 										pattern="/^[\w'\s]+$/" />
 								</div>
-								<label for="cropCategory" class="control-label col-md-2">Category</label>
+								<label for="produceCategory" class="control-label col-md-2">Category</label>
 								<div class="col-md-4">
-									<select class="form-control mandatory" id="cropCategory"
-										name="cropCategory">
+									<select class="form-control mandatory" id="produceCategory"
+										name="produceCategory">
 										<option
-											th:each="type : ${T(ourfood.domain.enums.CropCategory).values()}"
-											th:text="#{cropCategory. + ${type}}" th:value="${type}"
-											th:selected="${type == crop.cropCategory}"></option>
+											th:each="type : ${T(ourfood.domain.enums.ProduceCategory).values()}"
+											th:text="#{produceCategory. + ${type}}" th:value="${type}"
+											th:selected="${type == produce.produceCategory}"></option>
 									</select>
 								</div>
 							</div>

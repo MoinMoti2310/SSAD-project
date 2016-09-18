@@ -3,20 +3,20 @@
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Seller Account</title>
+<title>Buyer Account</title>
 </head>
 <body>
 	<div layout:fragment="content" class="container">
-		<div class="page-header header-background">
+	<div class="page-header header-background">
 			<h1>
-				Update Seller Account
+				Add Buyer Account				
 			</h1>
 		</div>
 		<div class="row vertical-align">
 			<div class="col-md-10">
-				<form id="editForm" th:action="@{/sellacc/edit/{id}(id=${account.id})}" action="#"
+				<form id="createAccount" th:action="@{/buyeraccount/create}" action="#"
 					method="post" role="form" class="form-horizontal"
-					th:object="${account}" th:attr="data-item-id=${account.id}">
+					th:object="${account}">
 					<div class="row" th:if="${#fields.hasErrors('*')}">
 						<div class="col-md-12">
 							<div class="note note-danger">
@@ -32,8 +32,8 @@
 								<label for="first-name" class="control-label col-md-2">Name</label>
 								<div class="col-md-4">
 									<input type="text" th:field="*{name}" placeholder="Name"
-										class="form-control input-sm mandatory" id="name" required="required"
-										pattern="/^[\w'\s]+$/" />
+										class="form-control input-sm mandatory" id="name"
+										required="required" pattern="/^[\w'\s]+$/" />
 								</div>
 								<label for="first-name" class="control-label col-md-2">Pin
 									Code</label>
@@ -47,14 +47,14 @@
 								<label for="description" class="control-label col-md-2">Description</label>
 								<div class="col-md-4">
 									<textarea th:field="*{description}"
-										placeholder="Description" class="form-control mandatory" required="required"
-										id="description"></textarea>
+										placeholder="Description" class="form-control mandatory"
+										id="description" required="required" ></textarea>
 								</div>
 							</div>
 							<div class="form-group">
 							<label class="control-label col-md-2"></label>
 								<div class="col-md-4">
-									<input type="submit" id="btn-update" class="btn btn-sm btn-success"
+									<input type="submit" class="btn btn-sm btn-success"
 										value="Save" />
 								</div>
 							</div>
@@ -64,42 +64,9 @@
 			</div>
 		</div>
 	</div>
-	<script layout:fragment="script" type="text/javascript">		
-
-		function updateItem(e) {					
-
-			e.preventDefault();					
-
-			var itemId = $(this).data("item-id");
-			var url = $(this).attr("action");					
-
-			$.ajax({
-				type : 'POST',
-				url : url,
-				data : new FormData($(this)[0]),						
-				cache : false,
-				processData : false,
-				contentType : false,
-				beforeSend : function() {
-					$("#btn-update").prop('disabled', true);
-				},
-				success : function(response) {
-					$("#btn-update").prop('disabled', false);							
-					showMessage('Group updated successfully.', '', 'success');
-
-				},
-				error : function(XMLHttpRequest, textStatus,
-						errorThrown) {
-					
-					showMessage(XMLHttpRequest.responseText, '', 'error');
-					$("#btn-update").prop('disabled', false);
-				}
-			});
-		}
-	
+	<script layout:fragment="script" type="text/javascript">
 		$(document).ready(function() {
-			$('#editForm').parsley();
-			$("#editForm").on("submit", updateItem);
+			$('#createAccount').parsley();
 		});
 	</script>
 </body>

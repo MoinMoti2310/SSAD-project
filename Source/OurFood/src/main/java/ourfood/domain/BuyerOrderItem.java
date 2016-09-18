@@ -38,7 +38,7 @@ public class BuyerOrderItem implements Serializable {
     private Long id;
 
     @NotNull
-    private Crop crop;
+    private Produce produce;
 
     @NotNull
     private Long quantity;
