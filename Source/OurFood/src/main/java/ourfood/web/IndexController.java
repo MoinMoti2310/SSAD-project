@@ -172,7 +172,7 @@ public class IndexController {
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String dashboard(Model model, Authentication authentication) {
         User user = (User) authentication.getPrincipal();
-        return "dashboard";
+        return "dashboard/dashboard";
     }
 
     @PreAuthorize("isAuthenticated()")
