@@ -26,6 +26,7 @@
 					</div>
 					<div class="row">
 						<fieldset>
+							<h4>Order Details</h4>
 							<div class="form-group">
 								<label for="first-name" class="control-label col-md-2">Name</label>
 								<div class="col-md-4">
@@ -33,7 +34,7 @@
 										class="form-control input-sm mandatory" id="name"
 										required="required" pattern="/^[\w'\s]+$/" />
 								</div>
-								<label for="first-name" class="control-label col-md-2">Pin
+								<label for="pin-code" class="control-label col-md-2">Pin
 									Code</label>
 								<div class="col-md-4">
 									<input type="number" th:field="*{pinCode}"
@@ -48,7 +49,18 @@
 										class="form-control mandatory" id="description"
 										required="required"></textarea>
 								</div>
+								<label for="account" class="control-label col-md-2">Account</label>
+								<div class="col-md-4">
+									<select class="form-control mandatory" id="organization"
+											required="required" th:field="*{account}">
+										<option value="" hidden="">Select Buyer Account</option>
+										<option th:each="account:${accounts}" th:value="${account.id}"
+												th:text="${account.name}">Buyer Account</option>
+									</select>
+								</div>
 							</div>
+							<hr/>
+							<h4>Order Item Details</h4>
 							<div class="form-group">
 								<label class="control-label col-md-2"></label>
 								<div class="col-md-4">

@@ -82,4 +82,20 @@ public class BuyerOrderItem implements Serializable {
     public void setPrice(Long price) {
         this.price = price;
     }
+
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public BuyerOrder getOrder() {
+        return order;
+    }
+
+    public void setOrder(BuyerOrder order) {
+        this.order = order;
+    }
 }
