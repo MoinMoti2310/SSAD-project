@@ -34,7 +34,7 @@
 										class="form-control input-sm mandatory" id="name"
 										required="required" pattern="/^[\w'\s]+$/" />
 								</div>
-								<label for="first-name" class="control-label col-md-2">Pin
+								<label for="pin-code" class="control-label col-md-2">Pin
 									Code</label>
 								<div class="col-md-4">
 									<input type="number" th:field="*{pinCode}"
@@ -48,6 +48,15 @@
 									<textarea th:field="*{description}" placeholder="Description"
 										class="form-control mandatory" required="required"
 										id="description"></textarea>
+								</div>
+								<label for="account" class="control-label col-md-2">Account</label>
+								<div class="col-md-4">
+									<select class="form-control mandatory" id="organization"
+											required="required" th:field="*{account}">
+										<option th:value="${order.account.id}" th:text="${order.account.name}">Current Buyer Account</option>
+										<option th:each="account:${accounts}" th:value="${account.id}"
+												th:text="${account.name}">Buyer Account</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
