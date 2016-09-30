@@ -55,7 +55,7 @@
 											required="required" th:field="*{account}">
 										<option th:value="${order.account.id}" th:text="${order.account.name}">Current Buyer Account</option>
 										<option th:each="account:${accounts}" th:value="${account.id}"
-												th:text="${account.name}">Buyer Account</option>
+												th:text="${account.name}" th:selected="${account == order.account}">Buyer Account</option>
 									</select>
 								</div>
 							</div>

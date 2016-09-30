@@ -98,4 +98,12 @@ public class BuyerOrderItem implements Serializable {
     public void setOrder(BuyerOrder order) {
         this.order = order;
     }
+
+    public BuyerOrderItemStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(BuyerOrderItemStatus status) {
+        this.status = status;
+    }
 }
