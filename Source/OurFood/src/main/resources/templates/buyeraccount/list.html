@@ -65,7 +65,7 @@
 						<h4 class="modal-title" id="modalLabel">Delete Buyer
 							Accounts</h4>
 					</div>
-					<form id="form-delete-items" action="@{/buyeraccount/delete}"
+					<form id="form-delete-items" th:action="@{/buyeraccount/delete}"
 						method="post">
 						<div class="modal-body">
 							<input type="hidden" name="itemIds[]" value="" /> Do you want to
