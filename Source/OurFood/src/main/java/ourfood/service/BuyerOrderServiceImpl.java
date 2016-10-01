@@ -12,6 +12,7 @@ import ourfood.domain.enums.BuyerOrderStatus;
 import ourfood.domain.enums.PaymentStatus;
 import ourfood.service.repositories.BuyerOrderItemRepository;
 import ourfood.service.repositories.BuyerOrderRepository;
+import ourfood.service.repositories.ProductRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,8 +28,11 @@ public class BuyerOrderServiceImpl implements BuyerOrderService {
     @Autowired
     BuyerOrderItemRepository buyerOrderItemRepo;
 
-    @PersistenceContext
-    EntityManager entityManager;
+    @Autowired
+    ProductRepository productRepo;
+
+    //@PersistenceContext
+    //EntityManager entityManager;
 
     @Override
     public void create(BuyerOrder order, User user) {
@@ -43,7 +47,7 @@ public class BuyerOrderServiceImpl implements BuyerOrderService {
             buyerOrderItem.setStatus(BuyerOrderItemStatus.ORDERED);
 
             buyerOrderRepo.save(order);
-            entityManager.flush();
+    //        entityManager.flush();
 
         } catch (Exception ex) {
             String exMessage = ex.getMessage();

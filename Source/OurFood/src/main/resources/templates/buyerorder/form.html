@@ -61,6 +61,17 @@
 							<hr/>
 							<h4>Order Item Details</h4>
 							<div class="form-group">
+								<label for="orderItem.Product" class="control-label col-md-2">Product</label>
+								<div class="col-md-4">
+									<select class="form-control mandatory" id="orderItem.product"
+											required="required" th:field="*{orderItems[0].product}">
+										<option value="" hidden="">Select Product</option>
+										<option th:each="product: ${products}" th:value="${product.id}"
+												th:text="${product.name}">Product</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
 								<label for="produceGrade" class="control-label col-md-2">Produce Grade</label>
 								<div class="cil-md-4">
 									<select class="form-control-mandatory" id="produceGrade" name="produceGrade">
