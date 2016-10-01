@@ -61,24 +61,6 @@
 							<hr/>
 							<h4>Order Item Details</h4>
 							<div class="form-group">
-								<label for="produceGrade" class="control-label col-md-2">Produce Grade</label>
-								<div class="cil-md-4">
-									<select class="form-control-mandatory" id="produceGrade" name="produceGrade">
-										<option
-											th:each="type : ${T(ourfood.domain.enums.ProduceGrade).values()}"
-											th:text="${type}" th:value="${type}">Produce Grade</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="orderItem.Quantity" class="control-label col-md-2">Quantity</label>
-								<div class="col-md-4">
-									<input type="text" th:field="*{orderItems[0].quantity}"
-										   placeholder="Quantity" class="form-control mandatory"
-										   id="order.orderItems[0].quantity" required="required" />
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="control-label col-md-2"></label>
 								<div class="col-md-4">
 									<input type="submit" class="btn btn-sm btn-success"
