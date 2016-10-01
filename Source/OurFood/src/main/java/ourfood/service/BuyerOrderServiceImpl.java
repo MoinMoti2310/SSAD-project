@@ -1,11 +1,8 @@
 package ourfood.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
 import ourfood.domain.BuyerOrder;
 import ourfood.domain.BuyerOrderItem;
 import ourfood.domain.Permissions;
@@ -15,6 +12,10 @@ import ourfood.domain.enums.BuyerOrderStatus;
 import ourfood.domain.enums.PaymentStatus;
 import ourfood.service.repositories.BuyerOrderItemRepository;
 import ourfood.service.repositories.BuyerOrderRepository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Component
 @Transactional
@@ -26,17 +27,27 @@ public class BuyerOrderServiceImpl implements BuyerOrderService {
     @Autowired
     BuyerOrderItemRepository buyerOrderItemRepo;
 
+    @PersistenceContext
+    EntityManager entityManager;
+
     @Override
     public void create(BuyerOrder order, User user) {
 
-        order.setStatus(BuyerOrderStatus.ORDERED);
-        order.setPaymentStatus(PaymentStatus.NOT_PAID);
+        try {
 
-        BuyerOrderItem buyerOrderItem = order.getOrderItems().get(0);
-        buyerOrderItem.setOrder(order);
-        buyerOrderItem.setStatus(BuyerOrderItemStatus.ORDERED);
+            order.setStatus(BuyerOrderStatus.ORDERED);
+            order.setPaymentStatus(PaymentStatus.NOT_PAID);
 
-        buyerOrderRepo.save(order);
+            BuyerOrderItem buyerOrderItem = order.getOrderItems().get(0);
+            buyerOrderItem.setOrder(order);
+            buyerOrderItem.setStatus(BuyerOrderItemStatus.ORDERED);
+
+            buyerOrderRepo.save(order);
+            entityManager.flush();
+
+        } catch (Exception ex) {
+            String exMessage = ex.getMessage();
+        }
     }
 
     @Override

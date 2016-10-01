@@ -24,7 +24,7 @@ import ourfood.service.BuyerOrderService;
 
 /**
  * Endpoint for Buyer Account CRUD
- * 
+ *
  * @author raghu.mulukoju
  */
 @RequestMapping(value = "/buyerorder")
@@ -63,9 +63,10 @@ public class BuyerOrderController {
     public String create(@ModelAttribute BuyerOrder order, Authentication auth) throws NoSuchMethodException,
             SecurityException {
 
+        User user = (User) auth.getPrincipal();
         try {
 
-            buyerOrderService.save(order);
+            buyerOrderService.create(order, user);
             return "redirect:/buyerorder/list";
         } catch (Exception e) {
             return "redirect:/blank";
