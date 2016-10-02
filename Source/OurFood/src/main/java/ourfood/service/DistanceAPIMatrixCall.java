@@ -18,10 +18,6 @@ public class DistanceAPIMatrixCall {
 	//	System.setProperty("http.proxyPort", "8080"); 
 	//}
 
-	public static void main(String[] args) {
-		System.out.println("Qqwwere");
-	}
-
 	// HTTP GET request
 	private String sendGet(LocationHolder[] origins, LocationHolder[] destinations) throws Exception {
 		String[] urlTokens = new String[4];
