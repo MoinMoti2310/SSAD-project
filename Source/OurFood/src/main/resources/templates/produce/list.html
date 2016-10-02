@@ -66,7 +66,7 @@
 						<h4 class="modal-title" id="modalLabel">Delete
 							Produces</h4>
 					</div>
-					<form id="form-delete-items" action="/produce/delete" method="post">
+					<form id="form-delete-items" th:action="/produce/delete" method="post">
 						<div class="modal-body">
 							<input type="hidden" name="itemIds[]" value="" /> Do you want to
 							delete the selected produces?<span id="delete-item-name"></span>

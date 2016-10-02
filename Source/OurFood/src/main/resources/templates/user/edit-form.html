@@ -92,7 +92,7 @@
 									<select class="form-control" id="userType"
 										th:field="*{userType}">
 										<th:block
-											th:each="type : ${T(scanon.domain.enums.UserType).values()}">
+											th:each="type : ${T(ourfood.domain.enums.UserType).values()}">
 											<option th:selected="${user.getUserType()== type}"
 												th:value="${type}" th:text="#{'userType.'+${type}}">userType</option>
 										</th:block>
@@ -107,7 +107,7 @@
 										th:field="*{organization}" required="required">
 										<option value=""></option>
 										<th:block th:each="organization:${organizations}">
-											<option th:selected="${user.organization == organization}"
+											<option th:selected="${user.organization.id == organization.id}"
 												th:value="${organization.id}" th:text="${organization.name}">Organization</option>
 										</th:block>
 									</select>
