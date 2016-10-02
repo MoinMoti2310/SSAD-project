@@ -100,7 +100,7 @@ public class ProductController {
      */
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
-    public String delete(@RequestParam("itemsIds[]") Long[] itemIds, Authentication auth, RedirectAttributes redirect) {
+    public String delete(@RequestParam("itemIds[]") Long[] itemIds, Authentication auth, RedirectAttributes redirect) {
         User user = (User) auth.getPrincipal();
 
         try {
