@@ -28,10 +28,10 @@ public class Location implements Serializable {
     private Float longitude;
 
     @Column
-    private String country;
+    private String state;
 
     @Column
-    private String state;
+    private int pinCode;
 
     @Enumerated(EnumType.STRING)
     private LocationType type;
@@ -70,14 +70,6 @@ public class Location implements Serializable {
         this.longitude = longitude;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public String getState() {
         return state;
     }
@@ -92,5 +84,13 @@ public class Location implements Serializable {
 
     public void setType(LocationType type) {
         this.type = type;
+    }
+
+    public int getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(int pinCode) {
+        this.pinCode = pinCode;
     }
 }

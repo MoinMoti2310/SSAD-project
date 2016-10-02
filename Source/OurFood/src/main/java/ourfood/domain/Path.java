@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Created by njay on 30/9/16.
  */
 @Entity
-public class Route {
+public class Path {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,13 +19,11 @@ public class Route {
 
     @OneToOne(fetch = FetchType.LAZY)
     @Access(AccessType.PROPERTY)
-    @JsonIgnore
-    private Location origin;
+        private Location origin;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Location destination;
 
-    @Column
     private Double distance;
 
     public Long getId() {

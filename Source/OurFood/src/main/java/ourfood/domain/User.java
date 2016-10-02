@@ -42,6 +42,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 public class User implements Serializable, UserDetails {
+    @Column(unique = true)
+    private String registeredMobile;
+
+
 
     /**
      * Default serialVersionUID
@@ -65,10 +69,6 @@ public class User implements Serializable, UserDetails {
     @Column(unique = true)
     @NotBlank
     private String primaryEmail;
-
-    @Column(unique = true)
-    private String registeredMobile;
-
     @Column(unique = true)
     private String registeredEmail;
 

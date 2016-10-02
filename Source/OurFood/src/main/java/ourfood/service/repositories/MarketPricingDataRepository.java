@@ -12,5 +12,5 @@ public interface MarketPricingDataRepository extends CrudRepository<MarketPricin
     // TODO: Need to understand repo querying better.
     MarketPricingData findById(Long id);
 
-    MarketPricingData findByLocation(Location location);
+    //MarketPricingData findByLocation(Location location);
 }

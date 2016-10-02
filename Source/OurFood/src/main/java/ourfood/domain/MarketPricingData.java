@@ -15,10 +15,8 @@ public class MarketPricingData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    //@OneToOne(fetch = FetchType.LAZY)
-    //@Access(AccessType.PROPERTY)
-    //@JsonIgnore
-    //private Location location;
+    @OneToOne(fetch = FetchType.LAZY)
+    private Location location;
 
     @Column
     @NotEmpty
@@ -44,14 +42,13 @@ public class MarketPricingData {
         this.id = id;
     }
 
-    /*public Location getLocation() {
+    public Location getLocation() {
         return location;
     }
 
     public void setLocation(Location location) {
         this.location = location;
     }
-    */
 
     public Date getDateOfArrival() {
         return dateOfArrival;
