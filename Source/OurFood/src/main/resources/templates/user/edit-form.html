@@ -63,7 +63,7 @@
 										placeholder="E-mail" class="form-control mandatory" id="email"
 										required="required"
 										data-parsley-remote="/users/validatePrimaryEmail"
-										th:attr="data-parsley-remote-message=#{user.notunique.primaryEmail}" />
+										th:attr="data-parsley-remote-message=#{user.notunique.primaiyEmail}" />
 								</div>
 								<label for="email" class="control-label col-md-2">Registered
 									Mobile </label>
@@ -108,7 +108,7 @@
 										<option value=""></option>
 										<th:block th:each="organization:${organizations}">
 											<option th:selected="${user.organization.id == organization.id}"
-												th:value="${organization.id}" th:text="${organization.name}">Organization</option>
+											th:value="${organization.id}" th:text="${organization.name}">Organization</option>
 										</th:block>
 									</select>
 								</div>
