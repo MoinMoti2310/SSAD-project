@@ -17,7 +17,7 @@ public enum ProduceGrade {
         this.produceGradeId = produceGradeId;
     }
 
-    public Long getProduceGrade() {
+    public Long getProduceGradeId() {
         return this.produceGradeId;
     }
 }
