@@ -35,8 +35,14 @@ public class BuyerAccount implements Serializable {
     private String description;
 
     private int pinCode;
+    
+    private String phoneNumber;
+    
+    private Long ISBN;
 
-    public BuyerAccount() {
+    
+
+	public BuyerAccount() {
 
     }
 
@@ -71,4 +77,20 @@ public class BuyerAccount implements Serializable {
     public void setPinCode(int pinCode) {
         this.pinCode = pinCode;
     }
+    
+    public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public Long getISBN() {
+		return ISBN;
+	}
+
+	public void setISBN(Long iSBN) {
+		ISBN = iSBN;
+	}
 }
