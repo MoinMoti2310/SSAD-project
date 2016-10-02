@@ -17,7 +17,7 @@ public enum ProduceCategory {
         this.produceCategoryId = produceCategoryId;
     }
 
-    public Long getProduceCategory() {
+    public Long getProduceCategoryId() {
         return this.produceCategoryId;
     }
 }
