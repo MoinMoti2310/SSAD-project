@@ -16,13 +16,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ourfood.domain.BuyerAccount;
 import ourfood.domain.BuyerOrder;
+import ourfood.domain.Product;
 import ourfood.domain.User;
+import ourfood.service.BuyerAccountService;
 import ourfood.service.BuyerOrderService;
+import ourfood.service.ProductService;
 
 /**
  * Endpoint for Buyer Account CRUD
- * 
+ *
  * @author raghu.mulukoju
  */
 @RequestMapping(value = "/buyerorder")
@@ -32,6 +36,12 @@ public class BuyerOrderController {
     @Autowired
     private BuyerOrderService buyerOrderService;
 
+    @Autowired
+    private BuyerAccountService buyerAccService;
+
+    @Autowired
+    private ProductService productService;
+
     /**
      * Display form to create buyer order
      */
@@ -39,9 +49,14 @@ public class BuyerOrderController {
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     public String createForm(@ModelAttribute BuyerOrder order, Model model) {
 
+        List<BuyerAccount> accounts = buyerAccService.getAll();
+        List<Product> products = productService.getAll();
+
         // NOTE: Spring follows naming conventions for default autowiring of objects
         // Adding model attribute may not be required if the parameter name is buyerAccount instead of order
         model.addAttribute("order", order);
+        model.addAttribute("accounts", accounts);
+        model.addAttribute("products", products);
         return "buyerorder/form";
     }
 
@@ -54,9 +69,10 @@ public class BuyerOrderController {
     public String create(@ModelAttribute BuyerOrder order, Authentication auth) throws NoSuchMethodException,
             SecurityException {
 
+        User user = (User) auth.getPrincipal();
         try {
 
-            buyerOrderService.save(order);
+            buyerOrderService.create(order, user);
             return "redirect:/buyerorder/list";
         } catch (Exception e) {
             return "redirect:/blank";
@@ -71,7 +87,13 @@ public class BuyerOrderController {
     public String editForm(@PathVariable Long id, Model model) {
 
         BuyerOrder order = buyerOrderService.get(id);
+        List<BuyerAccount> accounts = buyerAccService.getAll();
+        List<Product> products = productService.getAll();
+
         model.addAttribute("order", order);
+        model.addAttribute("accounts", accounts);
+        model.addAttribute("products", products);
+
         return "buyerorder/edit-form";
     }
 

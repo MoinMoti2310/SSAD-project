@@ -1,17 +1,10 @@
 package ourfood.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -45,6 +38,7 @@ public class BuyerOrder implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
     private List<BuyerOrderItem> orderItems;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private BuyerAccount account;
 
     private BuyerOrderStatus status;
@@ -86,6 +80,27 @@ public class BuyerOrder implements Serializable {
      * 
      * public void setOrderItems(List<BuyerOrderItem> orderItems) { this.orderItems = orderItems; }
      */
+    public List<BuyerOrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<BuyerOrderItem> orderItems) {
+
+        if (this.orderItems == null) {
+            this.orderItems = new ArrayList<>();
+        }
+
+        this.orderItems = orderItems;
+    }
+
+    public void addOrderItem(BuyerOrderItem orderItem) {
+
+        if (this.orderItems == null) {
+            this.orderItems = new ArrayList<>();
+        }
+
+        this.orderItems.add(orderItem);
+    }
 
     public BuyerAccount getAccount() {
         return account;

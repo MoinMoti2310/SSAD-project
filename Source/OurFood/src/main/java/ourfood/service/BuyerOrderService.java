@@ -7,6 +7,10 @@ import ourfood.domain.User;
 
 public interface BuyerOrderService {
 
+    void create(BuyerOrder order, User user);
+
+    void update(BuyerOrder order, User user);
+
     BuyerOrder get(Long id);
 
     void save(BuyerOrder account);

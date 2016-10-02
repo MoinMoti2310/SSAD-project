@@ -14,7 +14,7 @@
 		</div>
 		<div class="row vertical-align">
 			<div class="col-md-10">
-				<form id="editForm" th:action="@{/selleraccount/edit/{id}(id=${account.id})}" action="#"
+				<form id="editForm" action="@{/selleraccount/edit/{id}(id=${account.id})}" action="#"
 					method="post" role="form" class="form-horizontal"
 					th:object="${account}" th:attr="data-item-id=${account.id}">
 					<div class="row" th:if="${#fields.hasErrors('*')}">

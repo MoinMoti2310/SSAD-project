@@ -2,16 +2,7 @@ package ourfood.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import ourfood.domain.enums.BuyerOrderItemStatus;
@@ -38,7 +29,8 @@ public class BuyerOrderItem implements Serializable {
     private Long id;
 
     @NotNull
-    private Produce produce;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Product product;
 
     @NotNull
     private Long quantity;
@@ -46,6 +38,7 @@ public class BuyerOrderItem implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     @JsonIgnore
+    private
     BuyerOrder order;
 
     @NotNull
@@ -67,6 +60,10 @@ public class BuyerOrderItem implements Serializable {
         this.id = id;
     }
 
+    public Product getProduct() { return product; }
+
+    public void setProduct(Product product) { this.product = product; }
+
     public ProduceGrade getProduceGrade() {
         return produceGrade;
     }
@@ -81,5 +78,29 @@ public class BuyerOrderItem implements Serializable {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public BuyerOrder getOrder() {
+        return order;
+    }
+
+    public void setOrder(BuyerOrder order) {
+        this.order = order;
+    }
+
+    public BuyerOrderItemStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(BuyerOrderItemStatus status) {
+        this.status = status;
     }
 }

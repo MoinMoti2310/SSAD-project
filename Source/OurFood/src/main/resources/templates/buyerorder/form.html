@@ -26,6 +26,7 @@
 					</div>
 					<div class="row">
 						<fieldset>
+							<h4>Order Details</h4>
 							<div class="form-group">
 								<label for="first-name" class="control-label col-md-2">Name</label>
 								<div class="col-md-4">
@@ -33,7 +34,7 @@
 										class="form-control input-sm mandatory" id="name"
 										required="required" pattern="/^[\w'\s]+$/" />
 								</div>
-								<label for="first-name" class="control-label col-md-2">Pin
+								<label for="pin-code" class="control-label col-md-2">Pin
 									Code</label>
 								<div class="col-md-4">
 									<input type="number" th:field="*{pinCode}"
@@ -47,6 +48,45 @@
 									<textarea th:field="*{description}" placeholder="Description"
 										class="form-control mandatory" id="description"
 										required="required"></textarea>
+								</div>
+								<label for="account" class="control-label col-md-2">Account</label>
+								<div class="col-md-4">
+									<select class="form-control mandatory" id="organization"
+											required="required" th:field="*{account}">
+										<option th:each="account:${accounts}" th:value="${account.id}"
+												th:text="${account.name}">Buyer Account</option>
+									</select>
+								</div>
+							</div>
+							<hr/>
+							<h4>Order Item Details</h4>
+							<div class="form-group">
+								<label for="orderItem.Product" class="control-label col-md-2">Product</label>
+								<div class="col-md-4">
+									<select class="form-control mandatory" id="orderItem.product"
+											required="required" th:field="*{orderItems[0].product}">
+										<option value="" hidden="">Select Product</option>
+										<option th:each="product: ${products}" th:value="${product.id}"
+												th:text="${product.name}">Product</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="produceGrade" class="control-label col-md-2">Produce Grade</label>
+								<div class="cil-md-4">
+									<select class="form-control-mandatory" id="produceGrade" name="produceGrade">
+										<option
+												th:each="type : ${T(ourfood.domain.enums.ProduceGrade).values()}"
+												th:text="${type}" th:value="${type}">Produce Grade</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="orderItem.Quantity" class="control-label col-md-2">Quantity</label>
+								<div class="col-md-4">
+									<input type="text" th:field="*{orderItems[0].quantity}"
+										   placeholder="Quantity" class="form-control mandatory"
+										   id="order.orderItems[0].quantity" required="required" />
 								</div>
 							</div>
 							<div class="form-group">

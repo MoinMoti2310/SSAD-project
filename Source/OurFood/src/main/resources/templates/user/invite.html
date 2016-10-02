@@ -59,18 +59,20 @@
 										th:attr="data-parsley-remote-message=#{user.notunique.primaiyEmail}" />
 								</div>
 							</div>
-							<div class="form-group"
+							<!-- <div class="form-group"
 								sec:authorize="hasRole('PERM_PLATFORM_UPDATE')">
 								<label for="organization" class="control-label col-md-2">Organization</label>
 								<div class="col-md-8">
 									<select class="form-control mandatory" id="organization" required="required"
 										th:field="*{org}">
 										<option value="" hidden="">Select an Organization</option>
-										<option th:each="organization:${organizations}"
+										<th:block th:each="organization:${organizations}">
+											<option th:selected="${user.organization.id == organization.id}"
 											th:value="${organization.id}" th:text="${organization.name}">Organization</option>
+										</th:block>
 									</select>
 								</div>
-							</div>
+							</div> -->
 							<div class="form-group"
 								sec:authorize="hasRole('PERM_PLATFORM_UPDATE')">
 								<label for="role" class="control-label col-md-2">Role</label>
@@ -78,7 +80,7 @@
 									<select class="form-control mandatory" id="role" th:field="*{role}" required="required">
 										<option value="" hidden="">Select a Role</option>
 										<th:block
-											th:each="role : ${T(scanon.domain.RoleType).values()}">
+											th:each="role : ${T(ourfood.domain.RoleType).values()}">
 											<option th:value="${role}" th:text="${role}">Role</option>
 										</th:block>
 									</select>

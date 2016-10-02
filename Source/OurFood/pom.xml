@@ -146,6 +146,7 @@
 				<filtering>true</filtering>
 				<includes>
 					<include>application-${target.build.environment}.properties</include>
+					<include>**/*.*</include>
 				</includes>
 			</resource>
 		</resources>

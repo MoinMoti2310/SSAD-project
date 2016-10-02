@@ -13,8 +13,7 @@
 				<div role="toolbar" id="as-actions" class="pull-right">
 					<div class="btn-group">
 						<button type="button" class="btn btn-white btn-warning"
-							id="btn-delete">
-							<i class="ace-icon fa fa-trash-o bigger-120"></i>Delete
+							id="btn-delete"><i class="ace-icon fa fa-trash-o bigger-120"></i>Delete
 						</button>
 						<a type="button" class="btn btn-white btn-primary"
 							th:href="@{/buyeraccount/create}">Add</a>
@@ -34,6 +33,8 @@
 							<th>Name</th>
 							<th>PIN Code</th>
 							<th>Description</th>
+							<th>Phone No.</th>
+							<th>ISBN</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -48,6 +49,8 @@
 									th:text="${account.name}" th:title="${account.name}">Name</a></td>
 								<td><span th:text="${account.pinCode}">PIN</span></td>
 								<td><span th:text="${account.description}">Description</span></td>
+								<td><span th:text="${account.phoneNumber}">Phone Number</span></td>
+								<td><span th:text="${account.ISBN}">ISBN</span></td>
 							</tr>
 						</th:block>
 					</tbody>
@@ -66,7 +69,7 @@
 						<h4 class="modal-title" id="modalLabel">Delete Buyer
 							Accounts</h4>
 					</div>
-					<form id="form-delete-items" action="@{/buyeraccount/delete}"
+					<form id="form-delete-items" th:action="@{/buyeraccount/delete}"
 						method="post">
 						<div class="modal-body">
 							<input type="hidden" name="itemIds[]" value="" /> Do you want to
