@@ -48,13 +48,13 @@ public class PathServiceImpl implements PathService {
     @Override
     public List<Path> getPathsFrom(Location origin) {
         Assert.notNull(origin, "Origin must not be null.");
-        return pathRepository.findByOrigin(origin);
+        return pathRepository.findAllByOrigin(origin);
     }
 
     @Override
     public List<Path> getPathsTo(Location destination) {
         Assert.notNull(destination, "Destination must not be null.");
-        return pathRepository.findByDestination(destination);
+        return pathRepository.findAllByDestination(destination);
     }
 
     @Override
