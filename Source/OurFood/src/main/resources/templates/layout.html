@@ -10,6 +10,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 <title>Our Food</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"/>
 <link rel="stylesheet" static:href="@{/js/toastr/toastr.min.css}" />
 <link rel="stylesheet" static:href="@{/css/bootstrap.css}" />
 <link rel="stylesheet" static:href="@{/css/font-awesome.css}" />
@@ -18,8 +19,17 @@
 <link rel="stylesheet" static:href="@{/css/scanon-ext.css}" />
 <link rel="stylesheet"
 	static:href="@{/css/tinymce/skins/lightgray/skin.min.css}" />
+	<!-- <link rel="stylesheet" static:href="@{/css/fonts.googleapis.com.css}" /> -->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'
 	rel='stylesheet' type='text/css' />
+	<!--[if lte IE 9]>
+        <link rel="stylesheet" static:href="@{/css/ace-part2.min.css" />
+        <link rel="stylesheet" static:href="@{/css/ace-ie.min.css" />
+        <![endif]-->
+<!--[if lte IE 8]>
+        <script static:src="@{/js/html5shiv.min.js}"></script>
+        <script static:src="@{/js/respond.min.js}"></script>
+        <![endif]-->
 </head>
 <body class="no-skin">
 	<div id="navbar"
@@ -64,7 +74,7 @@
 														th:text="${notification.message}"></th:block>
 												</span>
 											</div>
-									</a></li>									
+									</a></li>
 								</ul>
 							</li>
 						</ul></li>
@@ -241,7 +251,7 @@
 				<div class="footer-content">
 					<span> <span class="blue bolder">Our Food</span>
 						Platform &copy; 2016-2017
-					</span>					
+					</span>
 				</div>
 			</div>
 		</div>
@@ -330,7 +340,7 @@
 			setTimeout(function() {
 				$('.close').trigger('click');
 			}, 5e3);
-			
+
 			if($("#successMsg").val().length > 0){
 				showMessage($("#successMsg").val(),'','success');
 			}
@@ -343,7 +353,7 @@
 			if($("#infoMsg").val().length > 0){
 				showMessage($("#infoMsg").val(),'','info');
 			}
-			
+
 		});
 	</script>
 	<script type="text/javascript" layout:fragment="script"></script>
