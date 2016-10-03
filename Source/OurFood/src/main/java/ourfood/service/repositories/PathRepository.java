@@ -14,12 +14,11 @@ import java.util.List;
 public interface PathRepository extends CrudRepository<Path, Long> {
 
     // TODO: Get help in queries.
-    List<Path> findByOrigin(Location origin);
+    List<Path> findAllByOrigin(Location origin);
 
-    List<Path> findByDestination(Location destination);
+    List<Path> findAllByDestination(Location destination);
 
     Path findById(Long id);
 
-    @Query("select * from Path p")
     List<Path> findAll();
 }

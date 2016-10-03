@@ -1,6 +1,5 @@
 package ourfood.service;
 
-import org.apache.poi.ss.formula.PlainCellCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Component;
@@ -66,4 +65,7 @@ public class PathServiceImpl implements PathService {
 
         // TODO: JsonParser call
     }
+
+    @Override
+    public void displayAll() {}
 }
