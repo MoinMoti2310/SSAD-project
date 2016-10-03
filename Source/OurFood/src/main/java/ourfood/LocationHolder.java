@@ -1,4 +1,4 @@
-package ourfood.service;
+package ourfood;
 
 public class LocationHolder {
 	public float latitude;
