@@ -1,9 +1,10 @@
 package ourfood.domain;
 
+import ourfood.domain.enums.LocationType;
+
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 
 /**
  * Domain object to represent a location of any thing
@@ -11,23 +12,29 @@ import javax.persistence.Embeddable;
  * @author raghu.mulukoju@qnovon.com
  * 
  */
-@Embeddable
+@Entity
 public class Location implements Serializable {
 
-    @Column
-    Float latitude;
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column
-    Float longitude;
+    private Float latitude;
 
     @Column
-    String country;
+    private Float longitude;
 
     @Column
-    String state;
+    private String state;
 
     @Column
-    String city;
+    private int pinCode;
+
+    @Enumerated(EnumType.STRING)
+    private LocationType type;
 
     public Location() {
 
@@ -37,6 +44,14 @@ public class Location implements Serializable {
 
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Float getLatitude() {
@@ -55,14 +70,6 @@ public class Location implements Serializable {
         this.longitude = longitude;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public String getState() {
         return state;
     }
@@ -71,11 +78,19 @@ public class Location implements Serializable {
         this.state = state;
     }
 
-    public String getCity() {
-        return city;
+    public LocationType getType() {
+        return type;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setType(LocationType type) {
+        this.type = type;
+    }
+
+    public int getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(int pinCode) {
+        this.pinCode = pinCode;
     }
 }
