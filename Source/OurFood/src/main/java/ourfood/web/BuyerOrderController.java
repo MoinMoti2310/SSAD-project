@@ -108,7 +108,9 @@ public class BuyerOrderController {
 
         try {
 
-            buyerOrderService.save(order);
+            User user = (User) auth.getPrincipal();
+
+            buyerOrderService.update(order, user);
             return "redirect:/buyerorder/list";
         } catch (Exception e) {
             return "redirect:/blank";
