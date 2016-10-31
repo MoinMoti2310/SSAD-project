@@ -45,25 +45,27 @@ public class BuyerOrderController {
     /**
      * Display form to create buyer order
      */
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/create/{productId}", method = RequestMethod.GET)
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
-    public String createForm(@ModelAttribute BuyerOrder order, Model model) {
+    public String createForm(@PathVariable Long productId, @ModelAttribute BuyerOrder order, Model model) {
 
         List<BuyerAccount> accounts = buyerAccService.getAll();
         List<Product> products = productService.getAll();
+        Product product = productService.get(productId);
 
         // NOTE: Spring follows naming conventions for default autowiring of objects
         // Adding model attribute may not be required if the parameter name is buyerAccount instead of order
         model.addAttribute("order", order);
         model.addAttribute("accounts", accounts);
         model.addAttribute("products", products);
+        model.addAttribute("product", product);
         return "buyerorder/form";
     }
 
     /**
      * Create new buyer order
      */
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create/{productId}", method = RequestMethod.POST)
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     @Transactional(rollbackOn = Exception.class)
     public String create(@ModelAttribute BuyerOrder order, Authentication auth) throws NoSuchMethodException,

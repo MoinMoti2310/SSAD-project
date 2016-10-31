@@ -26,7 +26,7 @@ public class Product implements Serializable {
 
     private String description;
 
-    private String img;
+    private String pic;
 
     @NotNull
     private ProduceCategory category;
@@ -75,11 +75,11 @@ public class Product implements Serializable {
         this.category = category;
     }
 
-    public String getImg() {
-        return img;
+    public String getPic() {
+        return pic;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 }

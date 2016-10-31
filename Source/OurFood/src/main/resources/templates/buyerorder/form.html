@@ -63,12 +63,17 @@
 							<div class="form-group">
 								<label for="orderItem.Product" class="control-label col-md-2">Product</label>
 								<div class="col-md-4">
+									<!--
 									<select class="form-control mandatory" id="orderItem.product"
 											required="required" th:field="*{orderItems[0].product}">
 										<option value="" hidden="">Select Product</option>
 										<option th:each="product: ${products}" th:value="${product.id}"
 												th:text="${product.name}">Product</option>
 									</select>
+									-->
+									<input type="text" th:field="*{orderItems[0].product}" th:placeholder="${product.name}"
+										   th:value="${product.id}" class="form-control input-sm mandatory" id="orderItem.product"
+										   readonly="readonly" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -77,7 +82,8 @@
 									<select class="form-control-mandatory" id="produceGrade" name="produceGrade">
 										<option
 												th:each="type : ${T(ourfood.domain.enums.ProduceGrade).values()}"
-												th:text="${type}" th:value="${type}">Produce Grade</option>
+												th:text="#{'produceGrade.' + ${type}}" th:value="${type}"
+												th:selected="#{type == order.produceGrade}">Produce Grade</option>
 									</select>
 								</div>
 							</div>

@@ -41,8 +41,8 @@
                                         name="produceCategory">
                                     <option
                                             th:each="type : ${T(ourfood.domain.enums.ProduceCategory).values()}"
-                                            th:text="#{produceCategory. + ${type}}" th:value="${type}"
-                                            th:selected="${type == product.produceCategory}"></option>
+                                            th:text="#{'produceCategory.' + ${type}}" th:value="${type}"
+                                            th:selected="#{type == product.produceCategory}"></option>
                                 </select>
                             </div>
                         </div>
@@ -53,11 +53,11 @@
                                               placeholder="Description" class="form-control mandatory"
                                               id="description" required="required" ></textarea>
                             </div>
-                            <label for="img" class="control-label col-md-2">Image Url</label>
+                            <label for="pic" class="control-label col-md-2">Image Url</label>
                             <div class="col-md-4">
-									<textarea th:field="*{img}"
+									<textarea th:field="*{pic}"
                                               placeholder="Image Url" class="form-control mandatory"
-                                              id="img" required="required" ></textarea>
+                                              id="pic" required="required" ></textarea>
                             </div>
                         </div>
                         <div class="form-group">

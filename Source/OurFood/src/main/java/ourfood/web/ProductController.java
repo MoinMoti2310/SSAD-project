@@ -96,6 +96,19 @@ public class ProductController {
     }
 
     /**
+     * Improved interface for list
+     */
+    @RequestMapping(value = "shop", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
+    public String shop(Model model) {
+
+        List<Product> products = productService.getAll();
+        model.addAttribute("products", products);
+
+        return "product/shop";
+    }
+
+    /**
      * Method to delete products
      */
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
