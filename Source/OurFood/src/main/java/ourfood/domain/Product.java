@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import ourfood.domain.enums.ProduceCategory;
 
 import javax.persistence.*;
+import javax.persistence.Parameter;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 

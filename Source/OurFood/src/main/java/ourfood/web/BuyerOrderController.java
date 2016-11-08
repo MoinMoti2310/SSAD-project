@@ -45,9 +45,9 @@ public class BuyerOrderController {
     /**
      * Display form to create buyer order
      */
-    @RequestMapping(value = "/create/{productId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
-    public String createForm(@PathVariable Long productId, @ModelAttribute BuyerOrder order, Model model) {
+    public String createForm(@RequestParam("productId") Long productId, @ModelAttribute BuyerOrder order, Model model) {
 
         List<BuyerAccount> accounts = buyerAccService.getAll();
         List<Product> products = productService.getAll();
@@ -65,14 +65,15 @@ public class BuyerOrderController {
     /**
      * Create new buyer order
      */
-    @RequestMapping(value = "/create/{productId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
     @Transactional(rollbackOn = Exception.class)
     public String create(@ModelAttribute BuyerOrder order, Authentication auth) throws NoSuchMethodException,
             SecurityException {
 
-        User user = (User) auth.getPrincipal();
         try {
+
+            User user = (User) auth.getPrincipal();
 
             buyerOrderService.create(order, user);
             return "redirect:/buyerorder/list";

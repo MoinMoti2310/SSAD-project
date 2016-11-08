@@ -23,7 +23,7 @@
                         <h4 th:text="#{'produceCategory.'+${product.produceCategory}}" >Category</h4>
                         <p th:text="${product.description}">Description</p>
                     </div>
-                    <p style="text-align: center"><a type="button" th:href="@{/buyerorder/create/{productId}(productId=${product.id})}" class="btn btn-white btn-primary" >Buy</a></p>
+                    <p style="text-align: center"><a type="button" th:href="@{/buyerorder/create?productId={productId}(productId=${product.id})}" class="btn btn-white btn-primary" >Buy</a></p>
                 </div>
             </div>
         </th:block>
