@@ -33,7 +33,9 @@ public class SellerAccount implements Serializable {
     private String name;
 
     private String description;
-
+    
+    private String phoneNumber;
+    
     private int pinCode;
 
     public SellerAccount() {
@@ -63,6 +65,13 @@ public class SellerAccount implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+    public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
     public int getPinCode() {
         return pinCode;
