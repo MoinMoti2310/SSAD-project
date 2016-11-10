@@ -90,7 +90,8 @@
 				},
 				error : function(XMLHttpRequest, textStatus,
 						errorThrown) {
-					
+					console.log(XMLHttpRequest);
+					console.log(textStatus);
 					showMessage(XMLHttpRequest.responseText, '', 'error');
 					$("#btn-update").prop('disabled', false);
 				}

@@ -1,6 +1,6 @@
 package ourfood.domain;
-
 import java.io.Serializable;
+
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.validator.constraints.NotBlank;
-
+import org.hibernate.validator.constraints.Length;
 /**
  * Domain object to represent Seller Account
  * 
@@ -35,6 +35,7 @@ public class SellerAccount implements Serializable {
     private String description;
     
     private String phoneNumber;
+
     
     private int pinCode;
 

@@ -38,7 +38,7 @@ public class SellerOrderItem implements Serializable {
     private Long id;
 
     @NotNull
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     private Produce produce;
 
     @NotNull
