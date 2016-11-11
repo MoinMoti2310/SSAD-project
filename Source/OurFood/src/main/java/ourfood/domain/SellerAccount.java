@@ -36,7 +36,7 @@ public class SellerAccount implements Serializable {
     
     private String phoneNumber;
 
-    
+    private String location;
     private int pinCode;
 
     public SellerAccount() {
@@ -72,6 +72,13 @@ public class SellerAccount implements Serializable {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String Location) {
+		this.location = location;
 	}
 
     public int getPinCode() {
