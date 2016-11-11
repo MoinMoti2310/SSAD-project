@@ -35,6 +35,7 @@
 							<th>PIN Code</th>
 							<th>Description</th>
 							<th>Phone No.</th>
+							<th>Location</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,7 +50,8 @@
 									th:text="${account.name}" th:title="${account.name}">Name</a></td>
 								<td><span th:text="${account.pinCode}">PIN</span></td>
 								<td><span th:text="${account.description}">Description</span></td>
-								<td><span th:text="${account.phoneNumber}">Phone Number</span></td>
+								<td><span th:text="${account.location}">Location</span></td>								
+
 							</tr>
 						</th:block>
 					</tbody>
