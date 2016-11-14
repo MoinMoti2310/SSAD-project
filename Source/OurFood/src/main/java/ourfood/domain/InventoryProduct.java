@@ -11,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -40,11 +39,19 @@ public class InventoryProduct implements Serializable {
     @NotBlank
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
-    private List<Produce> produce;
+    @OneToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+    private Product product;
 
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private ProcessingCenter warehouse;
     
     
@@ -84,14 +91,7 @@ public class InventoryProduct implements Serializable {
         this.description = description;
     }
 
-	public List<Produce> getProduce() {
-		return produce;
-	}
-
-	public void setProduce(List<Produce> produce) {
-		this.produce = produce;
-	}
-
+	
 	/*public void addOrderItem(SellerOrderItem orderItem) {
 
         if (this.orderItems == null) {

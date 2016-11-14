@@ -47,11 +47,10 @@ public class InventoryProduce implements Serializable {
     @NotBlank
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
-    private List<Produce> produce;
+    @OneToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+    private Produce produce;
 
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private ProcessingCenter warehouse;
     
     
@@ -65,6 +64,15 @@ public class InventoryProduce implements Serializable {
 
 	public void setWarehouse(ProcessingCenter warehouse) {
 		this.warehouse = warehouse;
+	}
+	
+
+	public Produce getProduce() {
+		return produce;
+	}
+
+	public void setProduce(Produce produce) {
+		this.produce = produce;
 	}
 
 	public Long getId() {
@@ -91,13 +99,7 @@ public class InventoryProduce implements Serializable {
         this.description = description;
     }
 
-	public List<Produce> getProduce() {
-		return produce;
-	}
-
-	public void setProduce(List<Produce> produce) {
-		this.produce = produce;
-	}
+	
 
 	/*public void addOrderItem(SellerOrderItem orderItem) {
 
