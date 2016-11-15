@@ -3,6 +3,42 @@
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
+<script type="text/javascript">
+var placeSearch, autocomplete;
+
+function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */(document.getElementById('location')),
+        {types: ['geocode']});
+
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    autocomplete.addListener('place_changed', fillInAddress);
+  }
+
+
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwcIZCOxf1S-nCIdxafrlOovyod-EVSaI&amp;libraries=places&amp;callback=initAutocomplete" async="async" defer="defer"></script>
+
 <title>Seller Account</title>
 </head>
 <body>
@@ -29,13 +65,13 @@
 					<div class="row">
 						<fieldset>
 							<div class="form-group">
-								<label for="first-name" class="control-label col-md-2">Name</label>
+								<label for="name" class="control-label col-md-2">Name</label>
 								<div class="col-md-4">
 									<input type="text" th:field="*{name}" placeholder="Name"
 										class="form-control input-sm mandatory" id="name" required="required"
 										pattern="/^[\w'\s]+$/" />
 								</div>
-								<label for="first-name" class="control-label col-md-2">Pin
+								<label for="pinCode" class="control-label col-md-2">Pin
 									Code</label>
 								<div class="col-md-4">
 									<input type="number" th:field="*{pinCode}"
@@ -52,6 +88,23 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label for="phoneNumber" class="control-label col-md-2">Phone Number</label>
+								<div class="col-md-4">
+									<input type="text" th:field="*{phoneNumber}" placeholder="Phone Number"
+										class="form-control input-sm mandatory" id="phoneNumber"
+										required="required" />
+								</div>
+								
+							</div>
+							<div class="form-group">
+								<label for="location" class="control-label col-md-2">Location</label>
+								<div class="col-md-4">
+									<input onFocus="geolocate()" type="text" th:field="*{location}" placeholder="location"
+										class="form-control input-sm mandatory" id="location"
+										required="required" />
+								</div>
+							</div>
+							<div class="form-group">
 							<label class="control-label col-md-2"></label>
 								<div class="col-md-4">
 									<input type="submit" id="btn-update" class="btn btn-sm btn-success"
@@ -64,6 +117,12 @@
 			</div>
 		</div>
 	</div>
+	<script layout:fragment="script" type="text/javascript">
+		$(document).ready(function() {
+			$('#createAccount').parsley();
+		});
+	      var placeSearch, autocomplete;	      
+	</script>
 	<script layout:fragment="script" type="text/javascript">		
 
 		function updateItem(e) {					
@@ -90,7 +149,8 @@
 				},
 				error : function(XMLHttpRequest, textStatus,
 						errorThrown) {
-					
+					console.log(XMLHttpRequest);
+					console.log(textStatus);
 					showMessage(XMLHttpRequest.responseText, '', 'error');
 					$("#btn-update").prop('disabled', false);
 				}
@@ -102,5 +162,6 @@
 			$("#editForm").on("submit", updateItem);
 		});
 	</script>
+	  
 </body>
 </html>

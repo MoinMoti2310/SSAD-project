@@ -39,7 +39,7 @@ public class BuyerAccount implements Serializable {
     private String phoneNumber;
     
     private Long ISBN;
-
+    private String location;
     
 
 	public BuyerAccount() {
@@ -85,7 +85,13 @@ public class BuyerAccount implements Serializable {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+	public String getLocation() {
+		return location;
+	}
 
+	public void setLocation(String Location) {
+		this.location = location;
+	}
 	public Long getISBN() {
 		return ISBN;
 	}

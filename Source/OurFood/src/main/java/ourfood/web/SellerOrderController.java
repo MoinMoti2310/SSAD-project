@@ -115,7 +115,8 @@ public class SellerOrderController {
             sellerOrderService.update(order, user);
             return "redirect:/sellerorder/list";
         } catch (Exception e) {
-            return "redirect:/blank";
+        	
+            return "redirect:/"+(e).toString();
         }
     }
 
