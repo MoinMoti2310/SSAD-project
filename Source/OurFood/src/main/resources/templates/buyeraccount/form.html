@@ -5,8 +5,9 @@
 <head>
 <script type="text/javascript">
 var placeSearch, autocomplete;
-
+var uluru, map;
 function initAutocomplete() {
+	initMap();
     // Create the autocomplete object, restricting the search to geographical
     // location types.
     autocomplete = new google.maps.places.Autocomplete(
@@ -15,7 +16,17 @@ function initAutocomplete() {
 
     // When the user selects an address from the dropdown, populate the address
     // fields in the form.
-    autocomplete.addListener('place_changed', fillInAddress);
+    autocomplete.addListener('place_changed', function(){
+    	if(autocomplete.getPlace()){
+      	  map.setCenter(autocomplete.getPlace().geometry.location);
+      	  map.setZoom(13);
+      	  var marker = new google.maps.Marker({
+            position: autocomplete.getPlace().geometry.location,
+            map: map
+          });
+        }
+    	
+    });
   }
 
 
@@ -28,6 +39,11 @@ function geolocate() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
+      var marker = new google.maps.Marker({
+          position: geolocation,
+          map: map
+        });
+      map.setCenter(geolocation);
       var circle = new google.maps.Circle({
         center: geolocation,
         radius: position.coords.accuracy
@@ -35,8 +51,24 @@ function geolocate() {
       autocomplete.setBounds(circle.getBounds());
     });
   }
+  
 }
+
+
+
+function initMap() {
+    uluru = {lat: -25.363, lng: 131.044};
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: uluru
+    });
+    var marker = new google.maps.Marker({
+      position: uluru,
+      map: map
+    });
+  }
 </script>
+
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwcIZCOxf1S-nCIdxafrlOovyod-EVSaI&amp;libraries=places&amp;callback=initAutocomplete" async="async" defer="defer"></script>
 <title>Buyer Account</title>
 </head>
@@ -107,12 +139,16 @@ function geolocate() {
 										class="form-control input-sm mandatory" id="location"
 										required="required" />
 								   </div>
-							    </div>							
+								   <div class="col-md-2"></div>
+								   <div class="col-md-4"><input type="submit" class="btn btn-sm btn-success"
+										value="Save" /></div>
+							    </div>	
+							    <div id="map"></div>
+							    						
 							   <div class="form-group">
 							    <label class="control-label col-md-2"></label>
 								 <div class="col-md-4">
-									<input type="submit" class="btn btn-sm btn-success"
-										value="Save" />
+									
 								</div>
 							</div>
 						</fieldset>
