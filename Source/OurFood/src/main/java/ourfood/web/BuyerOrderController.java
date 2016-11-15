@@ -47,16 +47,18 @@ public class BuyerOrderController {
      */
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
-    public String createForm(@ModelAttribute BuyerOrder order, Model model) {
+    public String createForm(@RequestParam("productId") Long productId, @ModelAttribute BuyerOrder order, Model model) {
 
         List<BuyerAccount> accounts = buyerAccService.getAll();
         List<Product> products = productService.getAll();
+        Product product = productService.get(productId);
 
         // NOTE: Spring follows naming conventions for default autowiring of objects
         // Adding model attribute may not be required if the parameter name is buyerAccount instead of order
         model.addAttribute("order", order);
         model.addAttribute("accounts", accounts);
         model.addAttribute("products", products);
+        model.addAttribute("product", product);
         return "buyerorder/form";
     }
 
@@ -69,8 +71,9 @@ public class BuyerOrderController {
     public String create(@ModelAttribute BuyerOrder order, Authentication auth) throws NoSuchMethodException,
             SecurityException {
 
-        User user = (User) auth.getPrincipal();
         try {
+
+            User user = (User) auth.getPrincipal();
 
             buyerOrderService.create(order, user);
             return "redirect:/buyerorder/list";

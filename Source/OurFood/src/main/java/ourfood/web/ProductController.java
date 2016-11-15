@@ -12,7 +12,9 @@ import ourfood.domain.User;
 import ourfood.service.ProductService;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * ENDPOINT for Product CRUD
@@ -93,6 +95,34 @@ public class ProductController {
         model.addAttribute("products", products);
 
         return "product/list";
+    }
+
+    /**
+     * Improved interface for list
+     */
+    @RequestMapping(value = "shop", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('PERM_PLATFORM_UPDATE')")
+    public String shop(@RequestParam(value = "query", required = false) String query, Model model) {
+
+        if (query != null) {
+            List<Product> allProducts = productService.getAll();
+            List<Product> products = new ArrayList<Product>();
+            for (Product product : allProducts) {
+                String s1 = product.getName();
+                String s2 = product.getDescription();
+                String s3 = String.valueOf(product.getProduceCategory());
+                boolean name = Pattern.compile(Pattern.quote(query), Pattern.CASE_INSENSITIVE).matcher(s1).find();
+                boolean desc = Pattern.compile(Pattern.quote(query), Pattern.CASE_INSENSITIVE).matcher(s2).find();
+                boolean category = Pattern.compile(Pattern.quote(query), Pattern.CASE_INSENSITIVE).matcher(s3).find();
+                if (name || desc || category) products.add(product);
+                model.addAttribute("products", products);
+            }
+        } else {
+            List<Product> products = productService.getAll();
+            model.addAttribute("products", products);
+        }
+
+        return "product/shop";
     }
 
     /**
